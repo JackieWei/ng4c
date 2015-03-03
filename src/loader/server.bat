@@ -46,7 +46,7 @@
 @call npm ls -g tsd >nul
 @if %errorlevel% neq 0 (
     @echo npm install tsd
-    @call npm i -g tsd
+    @call npm i -g tsd@next
 )
 @call npm update
 @call tsd update
