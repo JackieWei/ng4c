@@ -43,16 +43,14 @@
     @echo npm install bower
     @call npm i -g bower
 )
-@call npm ls http-server >nul
+@call npm ls -g tsd >nul
 @if %errorlevel% neq 0 (
-    @echo npm install http-server
-    @call npm i http-server
+    @echo npm install tsd
+    @call npm i -g tsd
 )
-@call npm ls http-proxy >nul
-@if %errorlevel% neq 0 (
-    @echo npm install http-proxy
-    @call npm i http-proxy
-)
+@call npm update
+@call tsd update
+@call tsd rebundle
 @call bower list -o | findstr "not\ installed" >nul
 @if %errorlevel% equ 0 (
     @echo bower install ...
@@ -65,6 +63,7 @@
     
     @mkdir -p ..\thirdparty\resources
     @mklink /J ..\thirdparty\resources\thirdparty bower_components
+    @mklink /J ..\thirdparty\resources\thirdparty.d tsd_modules
 )
 
 

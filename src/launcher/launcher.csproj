@@ -68,6 +68,9 @@
     <TypeScriptCompile Include="..\fin\resources\fin.d.ts">
       <Link>resources\fin.d.ts</Link>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="..\thirdparty\resources\thirdparty.d\tsd.d.ts">
+      <Link>resources\tsd.d.ts</Link>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="resources\sap\cloud\launcher\App.ts" />
     <TypeScriptCompile Include="resources\sap\cloud\launcher\Launchpad.ts" />
   </ItemGroup>

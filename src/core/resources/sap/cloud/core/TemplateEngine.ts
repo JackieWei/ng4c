@@ -1,4 +1,5 @@
-﻿/// <reference path="../logging/Logger.ts" />
+﻿/// <reference path="../../../../../thirdparty/resources/thirdparty.d/tsd.d.ts" />
+/// <reference path="../logging/Logger.ts" />
 /// <reference path="../logging/LogManager.ts" />
 
 module sap.cloud.core {

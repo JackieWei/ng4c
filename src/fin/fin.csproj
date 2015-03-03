@@ -55,6 +55,9 @@
     <TypeScriptCompile Include="..\core\resources\core.d.ts">
       <Link>resources\core.d.ts</Link>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="..\thirdparty\resources\thirdparty.d\tsd.d.ts">
+      <Link>resources\tsd.d.ts</Link>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="resources\sap\cloud\fin\SalesOrder.ts" />
   </ItemGroup>
   <ItemGroup>

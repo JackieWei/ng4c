@@ -51,7 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bower.json" />
+    <None Include="package.json" />
     <None Include="server.bat" />
+    <None Include="tsd.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

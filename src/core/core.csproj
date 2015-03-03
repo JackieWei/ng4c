@@ -53,6 +53,9 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="resources\sap\cloud\core\TemplateEngine.less" />
+    <TypeScriptCompile Include="..\thirdparty\resources\thirdparty.d\tsd.d.ts">
+      <Link>resources\tsd.d.ts</Link>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="resources\sap\cloud\logging\Logger.ts" />
     <TypeScriptCompile Include="resources\sap\cloud\logging\SimpleLogger.ts" />
     <TypeScriptCompile Include="resources\sap\cloud\logging\LogManager.ts" />
