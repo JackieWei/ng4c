@@ -5,18 +5,16 @@
 @set no_proxy=
 
 
-@if not exist %_7z% (
-    @echo cannot find file %_7z%, install it and restart the script!
-    @goto eof
-)
-
-
 @where node >nul
 @if %errorlevel% neq 0 (
     @if not exist _ (
         @echo nodejs is not installed, download and configure it automatically.
 
         @if not exist "%curl%" (
+            @if not exist %_7z% (
+                @echo cannot find file %_7z%, install it and restart the script!
+                @goto :eof
+            )
             @call %_7z% x curl.exe.7z
         )
 
@@ -26,13 +24,14 @@
         @del %curl%
     )
     @set "Path=%Path%;%CD%\_\nodejs"
+
+    @where node >nul
+    @if %errorlevel% neq 0 (
+        @echo cannot find nodejs even it was installed, exit.
+        @goto :eof
+    )
 )
 
-@where node >nul
-@if %errorlevel% neq 0 (
-    @echo cannot find nodejs even it was installed, exit.
-    @goto :eof
-)
 
 
 @call nodevars
