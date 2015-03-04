@@ -65,9 +65,6 @@
     <TypeScriptCompile Include="..\core\resources\core.d.ts">
       <Link>resources\core.d.ts</Link>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="..\fin\resources\fin.d.ts">
-      <Link>resources\fin.d.ts</Link>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="..\thirdparty\resources\thirdparty.d\tsd.d.ts">
       <Link>resources\tsd.d.ts</Link>
     </TypeScriptCompile>
@@ -76,6 +73,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
+    <Content Include="resources\thirdparty\jquery\dist\jquery.min.js" />
+    <Content Include="resources\thirdparty\jquery\jquery-2.1.3.js" />
+    <Content Include="resources\thirdparty\less\less-1.7.1.js" />
+    <Content Include="resources\thirdparty\less\dist\less.min.js" />
+    <Content Include="resources\thirdparty\requirejs\require.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web" />
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptOutFile>resources/$(RootNamespace).js</TypeScriptOutFile>

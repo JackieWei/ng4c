@@ -52,17 +52,57 @@
     <TypeScriptSourceMap>false</TypeScriptSourceMap>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="resources\core.less" />
+    <Content Include="resources\fonts\SAP-icons.ttf" />
+    <Content Include="resources\fonts\SAP-icons.eot" />
+    <Content Include="resources\fonts\rei.wof" />
+    <Content Include="resources\fonts\rei.woff" />
+    <Content Include="resources\sap\sbo\ng4c\footer\Footer.html" />
+    <Content Include="resources\sap\sbo\ng4c\menu\Menu.html" />
     <None Include="resources\sap\cloud\core\TemplateEngine.less" />
+    <Content Include="resources\images\app\sap_50x26.png" />
+    <Content Include="resources\sap\sbo\ng4c\header\Header.less" />
+    <Content Include="resources\sap\sbo\ng4c\footer\Footer.less" />
+    <Content Include="resources\sap\sbo\ng4c\launchpad\Dashboard.less" />
+    <Content Include="resources\sap\sbo\ng4c\menu\Menu.less" />
     <TypeScriptCompile Include="..\thirdparty\resources\thirdparty.d\tsd.d.ts">
       <Link>resources\tsd.d.ts</Link>
     </TypeScriptCompile>
+    <None Include="resources\sap\cloud\core\Base.less" />
     <TypeScriptCompile Include="resources\sap\cloud\logging\Logger.ts" />
     <TypeScriptCompile Include="resources\sap\cloud\logging\SimpleLogger.ts" />
     <TypeScriptCompile Include="resources\sap\cloud\logging\LogManager.ts" />
     <TypeScriptCompile Include="resources\sap\cloud\core\TemplateEngine.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\app\Application.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\app\AppCtrl.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\app\AppStorage.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\app\changeName.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\app\IAppCtrlScope.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\Aside.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\BaseElement.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\Dashboard.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\Footer.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\footer\Footer.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\header\End.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\header\Center.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\header\Header.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\header\Begin.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\Launchpad.ts" />
+    <Content Include="resources\sap\sbo\ng4c\header\Header.html" />
+    <Content Include="resources\sap\sbo\ng4c\launchpad\Dashboard.html" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\Dashboard.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\Launchpad.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\menu\Menu.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="resources\core.less" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\sap\sbo\ng4c\app\Application.html" />
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptOutFile>$(RootNamespace).js</TypeScriptOutFile>

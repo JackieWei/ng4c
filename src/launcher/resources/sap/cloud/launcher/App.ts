@@ -9,5 +9,5 @@ module sap.cloud.launcher {
     }
 
     // entrypoint
-    App.main();
+    //App.main();
 }

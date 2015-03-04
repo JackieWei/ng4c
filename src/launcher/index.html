@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="Application">
 <head>
     <title>Test</title>
 
@@ -7,16 +7,20 @@
     <link rel="stylesheet/less" href="resources/core.less" />
 
     <!--thirdparty-->
-    <script src="resources/thirdparty/less/dist/less.min.js"></script>
-    <script src="resources/thirdparty/jquery/dist/jquery.min.js"></script>
+    <script src="resources/thirdparty/less/dist/less.js"></script>
+    <script src="resources/thirdparty/jquery/dist/jquery.js"></script>
     <script src="resources/thirdparty/requirejs/require.js"></script>
+    <script src="resources/thirdparty/angularjs/angular.js"></script>
+    <script src="resources/thirdparty/angularjs/angular-route.js"></script>
+    <script>
+    function Header() {
+    }
+    </script>
 
     <!--source-->
     <script src="resources/core.js"></script>
-    <script src="resources/fin.js"></script>
-    <script src="resources/launcher.js"></script>
 </head>
-<body class="scc-TemplateEngine">
-    <h1>Hello World</h1>
+<body>
+    <ng-view></ng-view>
 </body>
 </html>
