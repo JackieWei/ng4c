@@ -1,0 +1,7 @@
+C:\ng\ng4c\src\launcher-test\bin\launcher-test.dll
+C:\ng\ng4c\src\launcher-test\bin\launcher-test.pdb
+C:\ng\ng4c\src\launcher-test\bin\launcher.dll
+C:\ng\ng4c\src\launcher-test\bin\launcher.pdb
+C:\ng\ng4c\src\launcher-test\obj\Debug\launcher-test.csprojResolveAssemblyReference.cache
+C:\ng\ng4c\src\launcher-test\obj\Debug\launcher-test.dll
+C:\ng\ng4c\src\launcher-test\obj\Debug\launcher-test.pdb

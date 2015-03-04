@@ -1,0 +1,7 @@
+C:\ng\ng4c\src\fin\obj\Debug\fin.csprojResolveAssemblyReference.cache
+C:\ng\ng4c\src\fin\bin\fin.dll
+C:\ng\ng4c\src\fin\bin\fin.pdb
+C:\ng\ng4c\src\fin\bin\core.dll
+C:\ng\ng4c\src\fin\bin\core.pdb
+C:\ng\ng4c\src\fin\obj\Debug\fin.dll
+C:\ng\ng4c\src\fin\obj\Debug\fin.pdb

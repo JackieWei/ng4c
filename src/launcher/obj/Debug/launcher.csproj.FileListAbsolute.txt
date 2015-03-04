@@ -1,0 +1,10 @@
+C:\ng\ng4c\src\launcher\obj\Debug\launcher.csprojResolveAssemblyReference.cache
+C:\ng\ng4c\src\launcher\bin\launcher.dll
+C:\ng\ng4c\src\launcher\bin\launcher.pdb
+C:\ng\ng4c\src\launcher\bin\core.dll
+C:\ng\ng4c\src\launcher\bin\fin.dll
+C:\ng\ng4c\src\launcher\bin\core.pdb
+C:\ng\ng4c\src\launcher\bin\fin.pdb
+C:\ng\ng4c\src\launcher\obj\Debug\launcher.dll
+C:\ng\ng4c\src\launcher\obj\Debug\launcher.pdb
+C:\ng\ng4c\src\launcher\bin\launcher.dll.config
