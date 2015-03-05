@@ -321,8 +321,17 @@ var sap;
                     function Aside($scope, $element) {
                         _super.call(this, $scope, $element, "sap.sbo.ng4c.aside.Aside");
                         $scope.$on("showOrHideMenuBroadcast", $.proxy(this.onShowOrHideMenuBroadcast, this));
+                        var scope = this.$scope;
+                        scope.width = 50;
                     }
                     Aside.prototype.onShowOrHideMenuBroadcast = function (event, showOrHide) {
+                        var scope = this.$scope;
+                        if (showOrHide) {
+                            scope.width = 300;
+                        }
+                        else {
+                            scope.width = 50;
+                        }
                     };
                     return Aside;
                 })(BaseController);

@@ -111,8 +111,11 @@ declare module sap.sbo.ng4c.footer {
 }
 declare module sap.sbo.ng4c.aside {
     import BaseController = sap.sbo.ng4c.BaseController;
+    interface IAsideScope extends IScope {
+        width: number;
+    }
     class Aside extends BaseController {
-        constructor($scope: IScope, $element: JQuery);
+        constructor($scope: IAsideScope, $element: JQuery);
         private onShowOrHideMenuBroadcast(event, showOrHide);
     }
 }
