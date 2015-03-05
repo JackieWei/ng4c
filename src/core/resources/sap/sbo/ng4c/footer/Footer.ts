@@ -1,10 +1,9 @@
-﻿module sap.sbo.ng4c.footer {
-    export class Footer {
+﻿/// <reference path="../basecontroller.ts" />
+module sap.sbo.ng4c.footer {
+    import BaseController = sap.sbo.ng4c.BaseController;
+    export class Footer extends BaseController{
         public constructor($scope: any, $element: JQuery) {
-            $scope.template = 'resources/sap/sbo/ng4c/footer/Footer.html';
-            $scope.className = "sap-sbo-ng4c-footer-Footer";
-            console.log("Footer init");
+            super($scope, $element,"sap.sbo.ng4c.footer.Footer");
         }
     }
-    angular.module('Application').controller('sap.sbo.ng4c.footer.Footer', Footer);
 } 

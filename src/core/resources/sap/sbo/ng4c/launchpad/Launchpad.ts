@@ -1,9 +1,10 @@
-﻿module sap.sbo.ng4c.launchpad {
-    export class Launchpad {
-        public constructor($scope: any, $element: JQuery) {
-            $scope.className = "sap-sbo-ng4c-launchpad-Launchpad";
-            console.log("Launchpad init");
+﻿/// <reference path="../basecontroller.ts" />
+module sap.sbo.ng4c.launchpad {
+    import BaseController = sap.sbo.ng4c.BaseController;
+
+    export class Launchpad extends BaseController {
+        public constructor($scope: IScope, $element: JQuery) {
+            super($scope, $element, "sap.sbo.ng4c.launchpad.Launchpad");
         }
     }
-    angular.module('Application').controller('sap.sbo.ng4c.launchpad.Launchpad', Launchpad);
 } 

@@ -1,9 +1,9 @@
-﻿module sap.sbo.ng4c.header {
-    export class End {
-        public constructor($scope: any, $element: JQuery) {
-            $scope.className = "sap-sbo-ng4c-header-End";
-            console.log("Header End init");
+﻿/// <reference path="../basecontroller.ts" />
+module sap.sbo.ng4c.header {
+    import BaseController = sap.sbo.ng4c.BaseController;
+    export class End extends BaseController {
+        public constructor($scope: IScope, $element: JQuery) {
+            super($scope, $element, "sap.sbo.ng4c.header.End");
         }
     }
-    angular.module('Application').controller('sap.sbo.ng4c.header.End', End)
 }

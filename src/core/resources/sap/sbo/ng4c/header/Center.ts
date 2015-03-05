@@ -1,9 +1,9 @@
-﻿module sap.sbo.ng4c.header {
-    export class Center {
-        public constructor($scope: any, $element: JQuery) {
-            $scope.className = "sap-sbo-ng4c-header-Center";
-            console.log("Header Center init");
+﻿/// <reference path="../basecontroller.ts" />
+module sap.sbo.ng4c.header {
+    import BaseController = sap.sbo.ng4c.BaseController;
+    export class Center extends BaseController{
+        public constructor($scope: IScope, $element: JQuery) {
+            super($scope, $element, "sap.sbo.ng4c.header.Center");
         }
     }
-    angular.module('Application').controller('sap.sbo.ng4c.header.Center', Center);
 }

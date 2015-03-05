@@ -58,13 +58,14 @@
     <Content Include="resources\fonts\rei.wof" />
     <Content Include="resources\fonts\rei.woff" />
     <Content Include="resources\sap\sbo\ng4c\footer\Footer.html" />
-    <Content Include="resources\sap\sbo\ng4c\menu\Menu.html" />
+    <Content Include="resources\sap\sbo\ng4c\aside\Aside.html" />
     <None Include="resources\sap\cloud\core\TemplateEngine.less" />
     <Content Include="resources\images\app\sap_50x26.png" />
     <Content Include="resources\sap\sbo\ng4c\header\Header.less" />
     <Content Include="resources\sap\sbo\ng4c\footer\Footer.less" />
     <Content Include="resources\sap\sbo\ng4c\launchpad\Dashboard.less" />
-    <Content Include="resources\sap\sbo\ng4c\menu\Menu.less" />
+    <Content Include="resources\sap\sbo\ng4c\aside\Aside.less" />
+    <Content Include="resources\sap\sbo\ng4c\launchpad\Launchpad.less" />
     <TypeScriptCompile Include="..\thirdparty\resources\thirdparty.d\tsd.d.ts">
       <Link>resources\tsd.d.ts</Link>
     </TypeScriptCompile>
@@ -78,21 +79,19 @@
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\app\AppStorage.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\app\changeName.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\app\IAppCtrlScope.ts" />
-    <TypeScriptCompile Include="resources\sap\sbo\ng4c\Aside.ts" />
-    <TypeScriptCompile Include="resources\sap\sbo\ng4c\BaseElement.ts" />
-    <TypeScriptCompile Include="resources\sap\sbo\ng4c\Dashboard.ts" />
-    <TypeScriptCompile Include="resources\sap\sbo\ng4c\Footer.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\app\Registry.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\BaseController.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\footer\Footer.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\header\End.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\header\Center.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\header\Header.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\header\Begin.ts" />
-    <TypeScriptCompile Include="resources\sap\sbo\ng4c\Launchpad.ts" />
     <Content Include="resources\sap\sbo\ng4c\header\Header.html" />
     <Content Include="resources\sap\sbo\ng4c\launchpad\Dashboard.html" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\IScope.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\Dashboard.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\Launchpad.ts" />
-    <TypeScriptCompile Include="resources\sap\sbo\ng4c\menu\Menu.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\aside\Aside.ts" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

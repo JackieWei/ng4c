@@ -87,11 +87,9 @@ var sap;
                     function AppCtrl($scope, storage) {
                         this.$scope = $scope;
                         this.storage = storage;
-                        $scope.greeting = storage.get('name') !== '' ? 'Hello ' + storage.get('name') + ' !' : 'Hello you !';
-                        $scope.changeName = function (name) {
-                            storage.set('name', name);
-                            $scope.greeting = 'Hello ' + name + ' !';
-                        };
+                        $scope.$on("showOrHideMenu", function (event, showOrHide) {
+                            $scope.$broadcast("showOrHideMenuBroadcast", showOrHide);
+                        });
                         console.log("Application Controller init.");
                     }
                     AppCtrl.$inject = [
@@ -101,40 +99,6 @@ var sap;
                     return AppCtrl;
                 })();
                 app.AppCtrl = AppCtrl;
-            })(app = ng4c.app || (ng4c.app = {}));
-        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
-    })(sbo = sap.sbo || (sap.sbo = {}));
-})(sap || (sap = {}));
-var sap;
-(function (sap) {
-    var sbo;
-    (function (sbo) {
-        var ng4c;
-        (function (ng4c) {
-            var app;
-            (function (app) {
-                'use strict';
-                function changeName() {
-                    return {
-                        restrict: 'A',
-                        scope: false,
-                        link: function ($scope, element, attributes) {
-                            element.on('mouseenter', function () {
-                                element.addClass('animate');
-                            });
-                            element.on('mouseleave', function () {
-                                element.removeClass('animate');
-                            });
-                            element.on('click', function () {
-                                var name = JSON.parse(JSON.stringify(prompt('Please enter your name:')));
-                                $scope.changeName(name);
-                                $scope.$digest();
-                            });
-                        }
-                    };
-                }
-                app.changeName = changeName;
-                ;
             })(app = ng4c.app || (ng4c.app = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
@@ -170,43 +134,39 @@ var sap;
     (function (sbo) {
         var ng4c;
         (function (ng4c) {
-            var app;
-            (function (app) {
-                'use strict';
-                var Application = (function () {
-                    function Application() {
-                    }
-                    Application.main = function () {
-                        angular.module('Application', ['ngRoute']).service('storage', app.AppStorage).controller('controller', app.AppCtrl).directive('changeName', app.changeName).config(['$routeProvider', function ($routeProvider) {
-                            $routeProvider.when('/', {
-                                templateUrl: 'resources/sap/sbo/ng4c/app/Application.html',
-                                controller: 'controller'
-                            }).otherwise({
-                                redirectTo: '/'
-                            });
-                        }]);
-                    };
-                    return Application;
-                })();
-                Application.main();
-            })(app = ng4c.app || (ng4c.app = {}));
-        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
-    })(sbo = sap.sbo || (sap.sbo = {}));
-})(sap || (sap = {}));
-var sap;
-(function (sap) {
-    var sbo;
-    (function (sbo) {
-        var ng4c;
-        (function (ng4c) {
-            var BaseElement = (function () {
-                function BaseElement($scope, $element) {
-                    this._scope = $scope;
-                    this._element = $element;
+            var BaseController = (function () {
+                function BaseController($scope, $element, $package) {
+                    this.$scope = $scope;
+                    this.$element = $element;
+                    var lastIndex = $package.lastIndexOf(BaseController.DOT);
+                    var moduleStr = lastIndex < 0 ? "" : $package.slice(0, lastIndex);
+                    var klassName = lastIndex < 0 ? $package : $package.slice(lastIndex + 1);
+                    this.$package = $package;
+                    this.klass = klassName;
+                    this.module = moduleStr;
+                    this.registerTemplate($package);
+                    this.registerCssName($package);
+                    console.log(this.$package + " initialize!");
                 }
-                return BaseElement;
+                BaseController.prototype.translateFromPackageToSlashPath = function (packageStr) {
+                    return packageStr.replace(BaseController.DOT_REG, BaseController.SLASH);
+                };
+                BaseController.prototype.translateFromPackageToCssClassName = function (packageStr) {
+                    return packageStr.replace(BaseController.DOT_REG, BaseController.HYPHEN);
+                };
+                BaseController.prototype.registerTemplate = function (templatePackage) {
+                    this.$scope.template = "resources/" + this.translateFromPackageToSlashPath(templatePackage);
+                };
+                BaseController.prototype.registerCssName = function (cssName) {
+                    this.$scope.className = this.translateFromPackageToCssClassName(cssName);
+                };
+                BaseController.DOT_REG = /\./gi;
+                BaseController.HYPHEN = "-";
+                BaseController.SLASH = "/";
+                BaseController.DOT = ".";
+                return BaseController;
             })();
-            ng4c.BaseElement = BaseElement;
+            ng4c.BaseController = BaseController;
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
 })(sap || (sap = {}));
@@ -222,15 +182,18 @@ var sap;
     (function (sbo) {
         var ng4c;
         (function (ng4c) {
-            var BaseElement = sap.sbo.ng4c.BaseElement;
-            var Aside = (function (_super) {
-                __extends(Aside, _super);
-                function Aside($scope, $element) {
-                    _super.call(this, $scope, $element);
-                }
-                return Aside;
-            })(BaseElement);
-            ng4c.Aside = Aside;
+            var launchpad;
+            (function (launchpad) {
+                var BaseController = sap.sbo.ng4c.BaseController;
+                var Dashboard = (function (_super) {
+                    __extends(Dashboard, _super);
+                    function Dashboard($scope, $element) {
+                        _super.call(this, $scope, $element, "sap.sbo.ng4c.launchpad.Dashboard");
+                    }
+                    return Dashboard;
+                })(BaseController);
+                launchpad.Dashboard = Dashboard;
+            })(launchpad = ng4c.launchpad || (ng4c.launchpad = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
 })(sap || (sap = {}));
@@ -240,15 +203,86 @@ var sap;
     (function (sbo) {
         var ng4c;
         (function (ng4c) {
-            var BaseElement = sap.sbo.ng4c.BaseElement;
-            var Dashboard = (function (_super) {
-                __extends(Dashboard, _super);
-                function Dashboard($scope, $element) {
-                    _super.call(this, $scope, $element);
-                }
-                return Dashboard;
-            })(BaseElement);
-            ng4c.Dashboard = Dashboard;
+            var header;
+            (function (header) {
+                var BaseController = sap.sbo.ng4c.BaseController;
+                var End = (function (_super) {
+                    __extends(End, _super);
+                    function End($scope, $element) {
+                        _super.call(this, $scope, $element, "sap.sbo.ng4c.header.End");
+                    }
+                    return End;
+                })(BaseController);
+                header.End = End;
+            })(header = ng4c.header || (ng4c.header = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var header;
+            (function (header) {
+                var BaseController = sap.sbo.ng4c.BaseController;
+                var Header = (function (_super) {
+                    __extends(Header, _super);
+                    function Header($scope, $element) {
+                        _super.call(this, $scope, $element, "sap.sbo.ng4c.header.Header");
+                    }
+                    return Header;
+                })(BaseController);
+                header.Header = Header;
+            })(header = ng4c.header || (ng4c.header = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var header;
+            (function (header) {
+                var BaseController = sap.sbo.ng4c.BaseController;
+                var Center = (function (_super) {
+                    __extends(Center, _super);
+                    function Center($scope, $element) {
+                        _super.call(this, $scope, $element, "sap.sbo.ng4c.header.Center");
+                    }
+                    return Center;
+                })(BaseController);
+                header.Center = Center;
+            })(header = ng4c.header || (ng4c.header = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var header;
+            (function (header) {
+                var BaseController = sap.sbo.ng4c.BaseController;
+                var Begin = (function (_super) {
+                    __extends(Begin, _super);
+                    function Begin($scope, $element) {
+                        _super.call(this, $scope, $element, "sap.sbo.ng4c.header.Begin");
+                        $scope.showOrHideMenu = $.proxy(this.showOrHideMenu, this);
+                    }
+                    Begin.prototype.showOrHideMenu = function (name) {
+                        this.showOrHide = !this.showOrHide;
+                        this.$scope.$emit("showOrHideMenu", this.showOrHide);
+                    };
+                    return Begin;
+                })(BaseController);
+                header.Begin = Begin;
+            })(header = ng4c.header || (ng4c.header = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
 })(sap || (sap = {}));
@@ -260,16 +294,15 @@ var sap;
         (function (ng4c) {
             var footer;
             (function (footer) {
-                var Footer = (function () {
+                var BaseController = sap.sbo.ng4c.BaseController;
+                var Footer = (function (_super) {
+                    __extends(Footer, _super);
                     function Footer($scope, $element) {
-                        $scope.template = 'resources/sap/sbo/ng4c/footer/Footer.html';
-                        $scope.className = "sap-sbo-ng4c-footer-Footer";
-                        console.log("Footer init");
+                        _super.call(this, $scope, $element, "sap.sbo.ng4c.footer.Footer");
                     }
                     return Footer;
-                })();
+                })(BaseController);
                 footer.Footer = Footer;
-                angular.module('Application').controller('sap.sbo.ng4c.footer.Footer', Footer);
             })(footer = ng4c.footer || (ng4c.footer = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
@@ -280,111 +313,21 @@ var sap;
     (function (sbo) {
         var ng4c;
         (function (ng4c) {
-            var BaseElement = sap.sbo.ng4c.BaseElement;
-            var Footer = (function (_super) {
-                __extends(Footer, _super);
-                function Footer($scope, $element) {
-                    _super.call(this, $scope, $element);
-                }
-                return Footer;
-            })(BaseElement);
-            ng4c.Footer = Footer;
-        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
-    })(sbo = sap.sbo || (sap.sbo = {}));
-})(sap || (sap = {}));
-var sap;
-(function (sap) {
-    var sbo;
-    (function (sbo) {
-        var ng4c;
-        (function (ng4c) {
-            var header;
-            (function (header) {
-                var Begin = (function () {
-                    function Begin($scope, $element) {
-                        $scope.className = "sap-sbo-ng4c-header-Begin";
-                        console.log("Header Begin init");
+            var aside;
+            (function (aside) {
+                var BaseController = sap.sbo.ng4c.BaseController;
+                var Aside = (function (_super) {
+                    __extends(Aside, _super);
+                    function Aside($scope, $element) {
+                        _super.call(this, $scope, $element, "sap.sbo.ng4c.aside.Aside");
+                        $scope.$on("showOrHideMenuBroadcast", $.proxy(this.onShowOrHideMenuBroadcast, this));
                     }
-                    return Begin;
-                })();
-                header.Begin = Begin;
-                angular.module('Application').controller('sap.sbo.ng4c.header.Begin', Begin);
-            })(header = ng4c.header || (ng4c.header = {}));
-        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
-    })(sbo = sap.sbo || (sap.sbo = {}));
-})(sap || (sap = {}));
-var sap;
-(function (sap) {
-    var sbo;
-    (function (sbo) {
-        var ng4c;
-        (function (ng4c) {
-            var header;
-            (function (header) {
-                var Center = (function () {
-                    function Center($scope, $element) {
-                        $scope.className = "sap-sbo-ng4c-header-Center";
-                        console.log("Header Center init");
-                    }
-                    return Center;
-                })();
-                header.Center = Center;
-                angular.module('Application').controller('sap.sbo.ng4c.header.Center', Center);
-            })(header = ng4c.header || (ng4c.header = {}));
-        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
-    })(sbo = sap.sbo || (sap.sbo = {}));
-})(sap || (sap = {}));
-var sap;
-(function (sap) {
-    var sbo;
-    (function (sbo) {
-        var ng4c;
-        (function (ng4c) {
-            var header;
-            (function (header) {
-                var End = (function () {
-                    function End($scope, $element) {
-                        $scope.className = "sap-sbo-ng4c-header-End";
-                        console.log("Header End init");
-                    }
-                    return End;
-                })();
-                header.End = End;
-                angular.module('Application').controller('sap.sbo.ng4c.header.End', End);
-            })(header = ng4c.header || (ng4c.header = {}));
-        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
-    })(sbo = sap.sbo || (sap.sbo = {}));
-})(sap || (sap = {}));
-var sap;
-(function (sap) {
-    var sbo;
-    (function (sbo) {
-        var ng4c;
-        (function (ng4c) {
-            var header;
-            (function (header) {
-                var Header = (function () {
-                    function Header($scope, $element) {
-                        $scope.template = 'resources/sap/sbo/ng4c/header/Header.html';
-                        $scope.className = "sap-sbo-ng4c-header-Header";
-                        $scope.activities = [
-                            { "name": "Wake up" },
-                            { "name": "Brush teeth" },
-                            { "name": "Shower" },
-                            { "name": "Have breakfast" },
-                            { "name": "Go to work" },
-                            { "name": "Write a Nettuts article" },
-                            { "name": "Go to the gym" },
-                            { "name": "Meet friends" },
-                            { "name": "Go to bed" }
-                        ];
-                        console.log("Header init");
-                    }
-                    return Header;
-                })();
-                header.Header = Header;
-                angular.module('Application').controller('sap.sbo.ng4c.header.Header', Header);
-            })(header = ng4c.header || (ng4c.header = {}));
+                    Aside.prototype.onShowOrHideMenuBroadcast = function (event, showOrHide) {
+                    };
+                    return Aside;
+                })(BaseController);
+                aside.Aside = Aside;
+            })(aside = ng4c.aside || (ng4c.aside = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
 })(sap || (sap = {}));
@@ -396,37 +339,15 @@ var sap;
         (function (ng4c) {
             var launchpad;
             (function (launchpad) {
-                var Dashboard = (function () {
-                    function Dashboard($scope, $element) {
-                        $scope.template = 'resources/sap/sbo/ng4c/launchpad/Dashboard.html';
-                        $scope.className = "sap-sbo-ng4c-launchpad-Dashboard";
-                        console.log("Launchpad init");
-                    }
-                    return Dashboard;
-                })();
-                launchpad.Dashboard = Dashboard;
-                angular.module('Application').controller('sap.sbo.ng4c.launchpad.Dashboard', Dashboard);
-            })(launchpad = ng4c.launchpad || (ng4c.launchpad = {}));
-        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
-    })(sbo = sap.sbo || (sap.sbo = {}));
-})(sap || (sap = {}));
-var sap;
-(function (sap) {
-    var sbo;
-    (function (sbo) {
-        var ng4c;
-        (function (ng4c) {
-            var launchpad;
-            (function (launchpad) {
-                var Launchpad = (function () {
+                var BaseController = sap.sbo.ng4c.BaseController;
+                var Launchpad = (function (_super) {
+                    __extends(Launchpad, _super);
                     function Launchpad($scope, $element) {
-                        $scope.className = "sap-sbo-ng4c-launchpad-Launchpad";
-                        console.log("Launchpad init");
+                        _super.call(this, $scope, $element, "sap.sbo.ng4c.launchpad.Launchpad");
                     }
                     return Launchpad;
-                })();
+                })(BaseController);
                 launchpad.Launchpad = Launchpad;
-                angular.module('Application').controller('sap.sbo.ng4c.launchpad.Launchpad', Launchpad);
             })(launchpad = ng4c.launchpad || (ng4c.launchpad = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
@@ -437,15 +358,31 @@ var sap;
     (function (sbo) {
         var ng4c;
         (function (ng4c) {
-            var BaseElement = sap.sbo.ng4c.BaseElement;
-            var Launchpad = (function (_super) {
-                __extends(Launchpad, _super);
-                function Launchpad($scope, $element) {
-                    _super.call(this, $scope, $element);
-                }
-                return Launchpad;
-            })(BaseElement);
-            ng4c.Launchpad = Launchpad;
+            var app;
+            (function (app) {
+                var Registry = (function () {
+                    function Registry() {
+                    }
+                    Object.defineProperty(Registry, "controllers", {
+                        get: function () {
+                            var collection = [];
+                            collection.push({ name: "sap.sbo.ng4c.launchpad.Dashboard", controller: sap.sbo.ng4c.launchpad.Dashboard });
+                            collection.push({ name: "sap.sbo.ng4c.launchpad.Launchpad", controller: sap.sbo.ng4c.launchpad.Launchpad });
+                            collection.push({ name: "sap.sbo.ng4c.header.Begin", controller: sap.sbo.ng4c.header.Begin });
+                            collection.push({ name: "sap.sbo.ng4c.header.End", controller: sap.sbo.ng4c.header.End });
+                            collection.push({ name: "sap.sbo.ng4c.header.Center", controller: sap.sbo.ng4c.header.Center });
+                            collection.push({ name: "sap.sbo.ng4c.header.Header", controller: sap.sbo.ng4c.header.Header });
+                            collection.push({ name: "sap.sbo.ng4c.footer.Footer", controller: sap.sbo.ng4c.footer.Footer });
+                            collection.push({ name: "sap.sbo.ng4c.aside.Aside", controller: sap.sbo.ng4c.aside.Aside });
+                            return collection;
+                        },
+                        enumerable: true,
+                        configurable: true
+                    });
+                    return Registry;
+                })();
+                app.Registry = Registry;
+            })(app = ng4c.app || (ng4c.app = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
 })(sap || (sap = {}));
@@ -455,19 +392,32 @@ var sap;
     (function (sbo) {
         var ng4c;
         (function (ng4c) {
-            var menu;
-            (function (menu) {
-                var Menu = (function () {
-                    function Menu($scope, $element) {
-                        $scope.template = "resouces/sap/sbo/ng4c/menu/Menu.html";
-                        $scope.className = "sap-sbo-ng4c-menu-Menu";
-                        console.log("Menu init");
+            var app;
+            (function (_app) {
+                'use strict';
+                var Application = (function () {
+                    function Application() {
                     }
-                    return Menu;
+                    Application.main = function () {
+                        var app = angular.module('Application', ['ngRoute']).service('storage', _app.AppStorage).controller('AppCtrl', _app.AppCtrl).config(['$routeProvider', function ($routeProvider) {
+                            $routeProvider.when('/', {
+                                templateUrl: 'resources/sap/sbo/ng4c/app/Application.html',
+                                controller: 'AppCtrl'
+                            });
+                            $routeProvider.otherwise({
+                                redirectTo: '/'
+                            });
+                        }]);
+                        var modules = _app.Registry.controllers;
+                        modules.forEach(function (e) {
+                            app.controller(e.name, e.controller);
+                        });
+                    };
+                    return Application;
                 })();
-                menu.Menu = Menu;
-                angular.module('Application').controller('sap.sbo.ng4c.menu.Menu', Menu);
-            })(menu = ng4c.menu || (ng4c.menu = {}));
+                _app.Application = Application;
+                Application.main();
+            })(app = ng4c.app || (ng4c.app = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
 })(sap || (sap = {}));

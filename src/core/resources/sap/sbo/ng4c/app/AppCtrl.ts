@@ -2,17 +2,15 @@
 module sap.sbo.ng4c.app {
     'use strict';
 
-    export class AppCtrl {
+    export class AppCtrl{
         public static $inject = [
             '$scope',
             'storage'
         ];
         public constructor(private $scope: IAppCtrlScope, private storage: AppStorage) {
-            $scope.greeting = storage.get('name') !== '' ? 'Hello ' + storage.get('name') + ' !' : 'Hello you !';
-            $scope.changeName = (name) => {
-                storage.set('name', name);
-                $scope.greeting = 'Hello ' + name + ' !';
-            }
+            $scope.$on("showOrHideMenu", function (event:ng.IAngularEvent, showOrHide:boolean):void {
+                $scope.$broadcast("showOrHideMenuBroadcast", showOrHide);
+            });
             console.log("Application Controller init.");
         }
     }
