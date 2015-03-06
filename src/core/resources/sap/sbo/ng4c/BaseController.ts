@@ -1,4 +1,4 @@
-﻿/// <reference path="iscope.ts" />
+﻿/// <reference path="scope.ts" />
 module sap.sbo.ng4c {
     export class BaseController {
         private static DOT_REG = /\./gi;
@@ -6,14 +6,14 @@ module sap.sbo.ng4c {
         private static SLASH = "/";
         private static DOT = ".";
 
-        protected $scope: IScope;
+        protected $scope: Scope;
         protected $element: JQuery;
         protected $package: string;
 
         protected klass: string;
         protected module: string;
 
-        public constructor($scope: IScope, $element: JQuery, $package: string) {
+        public constructor($scope: Scope, $element: JQuery, $package: string) {
             this.$scope = $scope;
             this.$element = $element;
 
@@ -40,7 +40,7 @@ module sap.sbo.ng4c {
         }
 
         protected registerTemplate(templatePackage: string): void {
-            this.$scope.template = "resources/" + this.translateFromPackageToSlashPath(templatePackage);
+            this.$scope.template = "resources/" + this.translateFromPackageToSlashPath(templatePackage) + ".html";
         }
 
         protected registerCssName(cssName): void {

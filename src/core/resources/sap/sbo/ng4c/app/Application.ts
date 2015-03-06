@@ -1,5 +1,4 @@
-﻿/// <reference path="changename.ts" />
-/// <reference path="appstorage.ts" />
+﻿/// <reference path="appstorage.ts" />
 /// <reference path="registry.ts" />
 /// <reference path="appctrl.ts" />
 module sap.sbo.ng4c.app {
@@ -15,7 +14,7 @@ module sap.sbo.ng4c.app {
                 $routeProvider.when('/', {
                     templateUrl: 'resources/sap/sbo/ng4c/app/Application.html',
                     controller: 'AppCtrl'
-                });
+                    });
                 $routeProvider.otherwise({
                     redirectTo: '/'
                 });

@@ -1,0 +1,17 @@
+﻿<div ng-controller="sap.sbo.ng4c.launchpad.aside.Menu" ng-class="className">
+    <div ng-controller="sap.sbo.ng4c.launchpad.aside.Tab" ng-class="className">
+        <div class="tab">
+            <a href="">Modules</a>
+            <a href="">My Menu</a>
+        </div>
+        <div class="content">
+            <div ng-controller="sap.sbo.ng4c.launchpad.aside.Modules" ng-include="template" ng-class="className"></div>
+            <div ng-controller="sap.sbo.ng4c.launchpad.aside.MyMenu" ng-include="template" ng-class="className"></div>
+        </div>
+    </div>
+</div>
+<div ng-controller="sap.sbo.ng4c.launchpad.aside.LightAccess" ng-class="className">
+    <div>Home Icon</div>
+    <div>Search</div>
+    <div>List</div>
+</div>

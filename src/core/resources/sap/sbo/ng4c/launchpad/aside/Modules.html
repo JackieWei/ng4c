@@ -1,0 +1,8 @@
+﻿<div ng-controller="sap.sbo.ng4c.launchpad.aside.SearchBar" ng-include="template" ng-class="className">
+    SearchBar
+</div>
+<div ng-controller="sap.sbo.ng4c.launchpad.aside.ModulesTree" ng-class="className">
+    <ul>
+        <li ng-repeat="data in tree" ng-include="'resources/sap/sbo/ng4c/launchpad/aside/TreeNode.html'"></li>
+    </ul>
+</div>

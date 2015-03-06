@@ -1,12 +1,12 @@
 ﻿<div ng-controller="sap.sbo.ng4c.header.Begin" ng-class="className">
     <div class="sapUiUfdShellHeadContainer">
+        <a tabindex="0" href="javascript:void(0);" ng-show="showOrHideLogo" class="sapUiUfdShellHeadItm logoWrapper sapUiUfdShellHeadItmSep" title="SAP Business One Next Generation" ng-click="showOrHideMenu()">
+            <div class="logo"></div>
+        </a>
         <a tabindex="0" href="javascript:void(0);" class="sapUiUfdShellHeadItm sapUiUfdShellHeadItmSep" title="show/hide menu" ng-click="showOrHideMenu()">
             <span style="font-family: SAP-icons;"></span>
             <div class="sapUiUfdShellHeadItmMarker"><div></div></div>
         </a>
-        <div class="sapUiUfdShellIco">
-            <img class="sapUiUfdShellIco" title="SAP" alt="SAP" src="resources/themes/dracula/images/app/sap_50x26.png">
-        </div>
     </div>
 </div>
 <div ng-controller="sap.sbo.ng4c.header.Center" ng-class="className">

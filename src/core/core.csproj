@@ -52,24 +52,27 @@
     <TypeScriptSourceMap>false</TypeScriptSourceMap>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="resources\core.less" />
-    <Content Include="resources\fonts\SAP-icons.ttf" />
-    <Content Include="resources\fonts\SAP-icons.eot" />
-    <Content Include="resources\fonts\rei.wof" />
-    <Content Include="resources\fonts\rei.woff" />
+    <Content Include="resources\sap\sbo\ng4c\launchpad\aside\MyMenu.html" />
+    <Content Include="resources\sap\sbo\ng4c\launchpad\aside\Modules.html" />
+    <Content Include="resources\themes\dracula\images\app\logo.png" />
+    <Content Include="resources\themes\dracula\images\app\sap_50x26.png" />
+    <Content Include="resources\themes\dracula\library.less" />
+    <Content Include="resources\themes\base\fonts\SAP-icons.ttf" />
+    <Content Include="resources\themes\base\fonts\SAP-icons.eot" />
+    <Content Include="resources\themes\base\fonts\rei.wof" />
+    <Content Include="resources\themes\base\fonts\rei.woff" />
     <Content Include="resources\sap\sbo\ng4c\footer\Footer.html" />
-    <Content Include="resources\sap\sbo\ng4c\aside\Aside.html" />
-    <None Include="resources\sap\cloud\core\TemplateEngine.less" />
-    <Content Include="resources\images\app\sap_50x26.png" />
-    <Content Include="resources\sap\sbo\ng4c\header\Header.less" />
-    <Content Include="resources\sap\sbo\ng4c\footer\Footer.less" />
-    <Content Include="resources\sap\sbo\ng4c\launchpad\Dashboard.less" />
-    <Content Include="resources\sap\sbo\ng4c\aside\Aside.less" />
-    <Content Include="resources\sap\sbo\ng4c\launchpad\Launchpad.less" />
+    <Content Include="resources\sap\sbo\ng4c\launchpad\aside\Aside.html" />
+    <Content Include="resources\themes\base\sap\cloud\core\Base.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\aside\Aside.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\ng4c\footer\Footer.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\ng4c\header\Header.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\dashboard\Dashboard.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\Launchpad.less" />
+    <Content Include="resources\themes\base\library.less" />
     <TypeScriptCompile Include="..\thirdparty\resources\thirdparty.d\tsd.d.ts">
       <Link>resources\tsd.d.ts</Link>
     </TypeScriptCompile>
-    <None Include="resources\sap\cloud\core\Base.less" />
     <TypeScriptCompile Include="resources\sap\cloud\logging\Logger.ts" />
     <TypeScriptCompile Include="resources\sap\cloud\logging\SimpleLogger.ts" />
     <TypeScriptCompile Include="resources\sap\cloud\logging\LogManager.ts" />
@@ -77,8 +80,7 @@
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\app\Application.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\app\AppCtrl.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\app\AppStorage.ts" />
-    <TypeScriptCompile Include="resources\sap\sbo\ng4c\app\changeName.ts" />
-    <TypeScriptCompile Include="resources\sap\sbo\ng4c\app\IAppCtrlScope.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\app\AppCtrlScope.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\app\Registry.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\BaseController.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\footer\Footer.ts" />
@@ -87,11 +89,20 @@
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\header\Header.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\header\Begin.ts" />
     <Content Include="resources\sap\sbo\ng4c\header\Header.html" />
-    <Content Include="resources\sap\sbo\ng4c\launchpad\Dashboard.html" />
-    <TypeScriptCompile Include="resources\sap\sbo\ng4c\IScope.ts" />
-    <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\Dashboard.ts" />
+    <Content Include="resources\sap\sbo\ng4c\launchpad\dashboard\Dashboard.html" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\aside\Modules.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\aside\MoudulesTree.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\Scope.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\aside\Menu.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\aside\MyMenu.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\aside\LightAccess.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\aside\Tab.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\dashboard\Dashboard.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\dashboard\tiles\KpiTile.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\Launchpad.ts" />
-    <TypeScriptCompile Include="resources\sap\sbo\ng4c\aside\Aside.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\aside\Aside.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ui\controls\Tree.ts" />
+    <Content Include="resources\sap\sbo\ui\controls\TreeNode.html" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -102,6 +113,33 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="resources\sap\sbo\ng4c\app\Application.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\themes\dracula\sap\sbo\ng4c\header\Begin.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\themes\dracula\sap\sbo\ng4c\header\Center.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\themes\dracula\sap\sbo\ng4c\header\End.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\aside\Menu.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\aside\Tab.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\aside\Modules.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\aside\MyMenu.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\aside\LightAccess.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\dashboard\tiles\KpiTile.less" />
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptOutFile>$(RootNamespace).js</TypeScriptOutFile>

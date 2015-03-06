@@ -1,4 +1,4 @@
-﻿/// <reference path="iappctrlscope.ts" />
+﻿/// <reference path="appctrlscope.ts" />
 module sap.sbo.ng4c.app {
     'use strict';
 
@@ -7,7 +7,7 @@ module sap.sbo.ng4c.app {
             '$scope',
             'storage'
         ];
-        public constructor(private $scope: IAppCtrlScope, private storage: AppStorage) {
+        public constructor(private $scope: AppCtrlScope, private storage: AppStorage) {
             $scope.$on("showOrHideMenu", function (event:ng.IAngularEvent, showOrHide:boolean):void {
                 $scope.$broadcast("showOrHideMenuBroadcast", showOrHide);
             });
