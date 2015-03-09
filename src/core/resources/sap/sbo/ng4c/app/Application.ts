@@ -21,6 +21,11 @@ module sap.sbo.ng4c.app {
             }]);
 
             var modules: IController[] = Registry.controllers;
+            var controls
+
+            modules.forEach((e) => {
+                app.controller(e.name, e.controller);
+            });
 
             modules.forEach((e) => {
                 app.controller(e.name, e.controller);

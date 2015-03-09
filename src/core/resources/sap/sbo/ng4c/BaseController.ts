@@ -1,5 +1,8 @@
 ﻿/// <reference path="scope.ts" />
+/// <reference path="../../cloud/core/util/namingutil.ts" />
 module sap.sbo.ng4c {
+    import NamingUtil = sap.cloud.core.util.NamingUtil;
+
     export class BaseController {
         private static DOT_REG = /\./gi;
         private static HYPHEN = "-";
@@ -31,20 +34,12 @@ module sap.sbo.ng4c {
             console.log(this.$package + " initialize!");
         }
 
-        private translateFromPackageToSlashPath(packageStr: string): string {
-            return packageStr.replace(BaseController.DOT_REG, BaseController.SLASH);
-        }
-
-        private translateFromPackageToCssClassName(packageStr: string): string {
-            return packageStr.replace(BaseController.DOT_REG, BaseController.HYPHEN);
-        }
-
         protected registerTemplate(templatePackage: string): void {
-            this.$scope.template = "resources/" + this.translateFromPackageToSlashPath(templatePackage) + ".html";
+            this.$scope.template = "resources/" + NamingUtil.toPath(templatePackage) + ".html";
         }
 
-        protected registerCssName(cssName): void {
-            this.$scope.className = this.translateFromPackageToCssClassName(cssName);
+        protected registerCssName(packageName): void {
+            this.$scope.className = NamingUtil.toCssName(packageName);
         }
     }
 }

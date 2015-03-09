@@ -1,0 +1,7 @@
+*.dll
+*.pdb
+*.force
+*.cache
+*.csproj
+*.map
+*.suo

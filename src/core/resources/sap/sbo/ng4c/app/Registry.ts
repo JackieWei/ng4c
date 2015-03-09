@@ -12,16 +12,34 @@
 /// <reference path="../launchpad/launchpad.ts" />
 /// <reference path="../launchpad/dashboard/tiles/kpi.ts" />
 /// <reference path="../launchpad/aside/searchbar.ts" />
+/// <reference path="../../../cloud/core/util/namingutil.ts" />
 /// <reference path="../launchpad/aside/tab.ts" />
 /// <reference path="../launchpad/aside/mymenu.ts" />
 module sap.sbo.ng4c.app {
+
+    import NamingUtil = sap.cloud.core.util.NamingUtil;
+
     export interface IController {
         name: string;
         controller: Function;
     }
+
+    export interface IControl {
+        controllerName: string;
+        controller: Function;
+        directiveName: string;
+        directive: Function;
+    }
+
     export class Registry {
+
+        private static _controllers: IController[] = [];
+        private static _controls: IControl[] = [];
+
         public static get controllers(): IController[] {
-            var collection: IController[] = [];
+            if (Registry._controllers.length > 0) return Registry._controllers;
+
+            var collection: IController[] = Registry._controllers;
             /* Registry begins */
 
             //launchpad
@@ -49,6 +67,24 @@ module sap.sbo.ng4c.app {
             //footer
             collection.push({ name: "sap.sbo.ng4c.footer.Footer", controller: sap.sbo.ng4c.footer.Footer });
 
+            
+
+            /* Registry Ends */
+            return collection;
+        }
+
+        private static makeControl(packageStr, controller: Function, directive: Function): IControl {
+            var directiveName = NamingUtil.toDirective(packageStr);
+            return { controllerName: packageStr, controller: controller, directiveName: packageStr, directive: directive };
+        }
+
+        public static get controls(): IControl[] {
+            if (Registry._controls.length > 0) return Registry._controls;
+
+            var collection: IControl[] = [];
+            /* Registry begins */
+
+            collection.push(Registry.makeControl("sap.sbo.ui.controls.Tree", sap.sbo.ui.controls.Tree, sap.sbo.ui.controls.TreeDirective));
             
 
             /* Registry Ends */
