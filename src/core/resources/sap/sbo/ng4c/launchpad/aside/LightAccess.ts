@@ -8,8 +8,8 @@ module sap.sbo.ng4c.launchpad.aside {
     export class LightAccess extends BaseController {
         private scope: LightAccessProps;
 
-        public constructor($scope: LightAccessProps, $element: JQuery) {
-            super($scope, $element, "sap.sbo.ng4c.launchpad.aside.LightAccess");
+        public constructor($scope: LightAccessProps, $element: JQuery, $attrs: ng.IAttributes) {
+            super($scope, $element, $attrs, "sap.sbo.ng4c.launchpad.aside.LightAccess");
             this.scope = <LightAccessProps>this.$scope;
         }
     }

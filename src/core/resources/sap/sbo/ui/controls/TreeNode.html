@@ -1,3 +1,9 @@
-﻿<ul>
-    <li ng-repeat="data in tree" ng-include="'resources/sap/sbo/ng4c/launchpad/aside/TreeNode.html'"></li>
-</ul>
+﻿<div class="node" ng-click="logoClickHandler()">
+    <div class="logo {{isFolder ? 'folder' : 'leaf'}} {{isFolder ? (expand ? 'expand' : 'fold') : '' }}"></div>
+    <div class="name">{{name}}</div>
+</div>
+<div class="children">
+    <ul style="display:{{expand ? 'block' : 'none'}}">
+        <li ng-repeat="data in nodes" ng-controller="sap.sbo.ui.controls.TreeNode" ng-class="className" ng-include="template"></li>
+    </ul>
+</div>

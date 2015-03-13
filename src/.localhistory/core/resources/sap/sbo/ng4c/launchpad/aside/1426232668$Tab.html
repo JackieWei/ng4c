@@ -1,0 +1,11 @@
+﻿<div class="tab">
+    <a href="" ng-click="showTab(0)" style="background-color: {{currentIndex===0? '#007cc0' : '#333333'}}"><div>Modules</div></a>
+    <a href="" ng-click="showTab(1)" style="background-color: {{currentIndex===1? '#007cc0' : '#333333'}}"><div>My Menu</div></a>
+</div>
+<div class="content">
+    <div style="display:{{currentIndex===0? 'block' : 'none'}}" ng-controller="sap.sbo.ng4c.launchpad.aside.Modules" ng-include="template" ng-class="className">
+    </div>
+    <div style="display:{{currentIndex===1? 'block' : 'none'}}" ng-controller="sap.sbo.ng4c.launchpad.aside.MyMenu" ng-class="className">
+        <ng4c-tree ng-menuurl="resources/sap/sbo/ui/controls/MyMenu.json"></ng4c-tree>
+    </div>
+</div>

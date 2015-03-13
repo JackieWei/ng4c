@@ -8,8 +8,8 @@ module sap.sbo.ng4c.launchpad.aside {
     export class MyMenu extends BaseController {
         private scope: MyMenuProps;
 
-        public constructor($scope: Scope, $element: JQuery) {
-            super($scope, $element, "sap.sbo.ng4c.launchpad.aside.MyMenu");
+        public constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes) {
+            super($scope, $element, $attrs, "sap.sbo.ng4c.launchpad.aside.MyMenu");
             this.scope = <MyMenuProps>this.$scope;
         }
     }

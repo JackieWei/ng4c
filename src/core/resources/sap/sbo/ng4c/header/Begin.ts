@@ -9,8 +9,8 @@ module sap.sbo.ng4c.header {
 
     export class Begin extends BaseController {
         private scope: BeginScope;
-        public constructor($scope: Scope, $element: JQuery) {
-            super($scope, $element, "sap.sbo.ng4c.header.Begin");
+        public constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes) {
+            super($scope, $element, $attrs, "sap.sbo.ng4c.header.Begin");
             this.scope = <BeginScope>$scope;
             this.scope.showOrHideMenu = $.proxy(this.showOrHideMenu, this);
         }

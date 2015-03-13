@@ -11,14 +11,16 @@ module sap.sbo.ng4c {
 
         protected $scope: Scope;
         protected $element: JQuery;
+        protected $attrs: ng.IAttributes;
         protected $package: string;
 
         protected klass: string;
         protected module: string;
 
-        public constructor($scope: Scope, $element: JQuery, $package: string) {
+        public constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes, $package: string) {
             this.$scope = $scope;
             this.$element = $element;
+            this.$attrs = $attrs;
 
             var lastIndex: number = $package.lastIndexOf(BaseController.DOT);
             var moduleStr = lastIndex < 0 ? "" : $package.slice(0, lastIndex);

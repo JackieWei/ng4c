@@ -28,28 +28,40 @@ declare module sap.cloud.core.util {
     class NamingUtil {
         private static DOT_REG;
         private static SLASH;
+        private static DOT;
         private static HYPHEN;
+        private static EMPTY;
         static toCssName(packageName: string): string;
         static toPath(packageName: string): string;
         static toDirective(packageName: string): string;
-    }
-}
-declare module sap.sbo.ng4c.app {
-    interface AppCtrlScope extends ng.IScope {
-        greeting: string;
-        changeName(name: any): void;
+        static uppercaseFirstChar(str: string): string;
     }
 }
 declare module sap.sbo.ng4c.app {
     class AppCtrl {
-        private $scope;
-        private storage;
-        static $inject: string[];
-        constructor($scope: AppCtrlScope, storage: AppStorage);
+        constructor($scope: EventRouteScope);
     }
 }
 declare module sap.sbo.ng4c.app {
-    class AppStorage {
+    interface ListScope extends ng.IScope {
+        action: string;
+    }
+    class ListCtrl {
+        private scope;
+        constructor($scope: ng.IScope, $route: ng.route.IRouteService);
+    }
+}
+declare module sap.sbo.ng4c.app {
+    interface EventRouteScope extends ng.IScope {
+        greeting: string;
+        changeName(name: any): void;
+    }
+    class EventRoute {
+        constructor($scope: EventRouteScope, $element: JQuery);
+    }
+}
+declare module sap.sbo.ng4c.app {
+    class Storage {
         get(key: string): string;
         set(key: string, value: any): void;
     }
@@ -62,6 +74,7 @@ declare module sap.sbo.ng4c {
         height: number;
         left: number;
         top: number;
+        data: any;
     }
 }
 declare module sap.sbo.ng4c {
@@ -72,17 +85,20 @@ declare module sap.sbo.ng4c {
         private static DOT;
         protected $scope: Scope;
         protected $element: JQuery;
+        protected $attrs: ng.IAttributes;
         protected $package: string;
         protected klass: string;
         protected module: string;
-        constructor($scope: Scope, $element: JQuery, $package: string);
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes, $package: string);
         protected registerTemplate(templatePackage: string): void;
         protected registerCssName(packageName: any): void;
     }
 }
 declare module sap.sbo.ng4c.launchpad.aside {
     import BaseController = sap.sbo.ng4c.BaseController;
+    import Storage = sap.sbo.ng4c.app.Storage;
     interface IAsideScope extends Scope {
+        liteMode: boolean;
     }
     class AsideProps {
         static HIDE_WIDTH: number;
@@ -90,7 +106,7 @@ declare module sap.sbo.ng4c.launchpad.aside {
     }
     class Aside extends BaseController {
         private scope;
-        constructor($scope: IAsideScope, $element: JQuery);
+        constructor($scope: IAsideScope, $element: JQuery, $attrs: ng.IAttributes, storage: Storage);
         private onShowOrHideMenuBroadcast(event, showOrHide);
     }
 }
@@ -100,26 +116,36 @@ declare module sap.sbo.ng4c.launchpad.dashboard {
     }
     class Dashboard extends BaseController {
         private scope;
-        constructor($scope: Scope, $element: JQuery);
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
         private onShowOrHideMenuBroadcast(event, showOrHide);
     }
 }
 declare module sap.sbo.ng4c.header {
     import BaseController = sap.sbo.ng4c.BaseController;
     class End extends BaseController {
-        constructor($scope: Scope, $element: JQuery);
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
     }
 }
 declare module sap.sbo.ng4c.header {
     import BaseController = sap.sbo.ng4c.BaseController;
     class Header extends BaseController {
-        constructor($scope: Scope, $element: JQuery);
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
     }
 }
 declare module sap.sbo.ng4c.header {
     import BaseController = sap.sbo.ng4c.BaseController;
     class Center extends BaseController {
-        constructor($scope: Scope, $element: JQuery);
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
+    }
+}
+declare module sap.sbo.ng4c.app {
+    interface DetailScope extends ng.IScope {
+        action: string;
+        idx: string;
+    }
+    class DetailCtrl {
+        private scope;
+        constructor($scope: ng.IScope, $route: ng.route.IRouteService);
     }
 }
 declare module sap.sbo.ng4c.header {
@@ -130,14 +156,14 @@ declare module sap.sbo.ng4c.header {
     }
     class Begin extends BaseController {
         private scope;
-        constructor($scope: Scope, $element: JQuery);
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
         private showOrHideMenu(name);
     }
 }
 declare module sap.sbo.ng4c.footer {
     import BaseController = sap.sbo.ng4c.BaseController;
     class Footer extends BaseController {
-        constructor($scope: any, $element: JQuery);
+        constructor($scope: any, $element: JQuery, $attrs: ng.IAttributes);
     }
 }
 declare module sap.sbo.ng4c.launchpad.aside {
@@ -146,16 +172,33 @@ declare module sap.sbo.ng4c.launchpad.aside {
     }
     class LightAccess extends BaseController {
         private scope;
-        constructor($scope: LightAccessProps, $element: JQuery);
+        constructor($scope: LightAccessProps, $element: JQuery, $attrs: ng.IAttributes);
+    }
+}
+declare module sap.sbo.ng4c.app {
+    class Router {
+        private static SLASH;
+        private static EMPTY;
+        private static DOT;
+        private static LIST;
+        private static DETAIL;
+        constructor();
+        hashTo(fragments: string[]): void;
+        hashToList(boAbbr: string): void;
+        hashToDetail(boAbbr: string, boIdx: string): void;
     }
 }
 declare module sap.sbo.ng4c.launchpad.aside {
     import BaseController = sap.sbo.ng4c.BaseController;
+    import Router = sap.sbo.ng4c.app.Router;
     interface ModulesProps extends Scope {
+        menuItemClick: Function;
     }
     class Modules extends BaseController {
         private scope;
-        constructor($scope: Scope, $element: JQuery);
+        private router;
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes, router: Router);
+        menuItemClick(menuData: any): void;
     }
 }
 declare module sap.sbo.ng4c.launchpad.aside {
@@ -164,27 +207,13 @@ declare module sap.sbo.ng4c.launchpad.aside {
     }
     class Menu extends BaseController {
         private scope;
-        constructor($scope: Scope, $element: JQuery);
-    }
-}
-declare module sap.sbo.ng4c.launchpad.aside {
-    import BaseController = sap.sbo.ng4c.BaseController;
-    interface ModulesTreeProps extends Scope {
-        delete: Function;
-        add: Function;
-        tree: Object[];
-    }
-    class ModulesTree extends BaseController {
-        private scope;
-        private myMeny;
-        private modules;
-        constructor($scope: Scope, $element: JQuery);
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
     }
 }
 declare module sap.sbo.ng4c.launchpad {
     import BaseController = sap.sbo.ng4c.BaseController;
     class Launchpad extends BaseController {
-        constructor($scope: Scope, $element: JQuery);
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
     }
 }
 declare module sap.sbo.ng4c.launchpad.dashboard.tiles {
@@ -193,7 +222,7 @@ declare module sap.sbo.ng4c.launchpad.dashboard.tiles {
     }
     class Kpi extends BaseController {
         private scope;
-        constructor($scope: Scope, $element: JQuery);
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
     }
 }
 declare module sap.sbo.ng4c.launchpad.aside {
@@ -202,16 +231,76 @@ declare module sap.sbo.ng4c.launchpad.aside {
     }
     class SearchBar extends BaseController {
         private scope;
-        constructor($scope: Scope, $element: JQuery);
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
     }
 }
 declare module sap.sbo.ng4c.launchpad.aside {
     import BaseController = sap.sbo.ng4c.BaseController;
     interface TabProps extends Scope {
+        currentIndex: number;
+        showTab: Function;
     }
     class Tab extends BaseController {
         private scope;
-        constructor($scope: Scope, $element: JQuery);
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
+        showTab(index: number): void;
+    }
+}
+declare module sap.sbo.ui.controls {
+    function TreeDirective(): {
+        restrict: string;
+        replace: boolean;
+        transclude: boolean;
+        templateUrl: string;
+        link: ($scope: any, $element: any, $attrs: any, $controller: any) => void;
+    };
+}
+declare module sap.sbo.ui {
+    import BaseController = sap.sbo.ng4c.BaseController;
+    import Scope = sap.sbo.ng4c.Scope;
+    interface ControlScope extends Scope {
+    }
+    class BaseControl extends BaseController {
+        constructor($scope: ControlScope, $element: JQuery, $attrs: ng.IAttributes, $package: string);
+    }
+}
+declare module sap.sbo.ui.controls {
+    import BaseControl = sap.sbo.ui.BaseControl;
+    interface TreeScope extends ControlScope {
+        nodes: any[];
+    }
+    interface TreeAttributes extends ng.IAttributes {
+        ngMenuurl: string;
+        ngLeafclick: Function;
+    }
+    class Tree extends BaseControl {
+        private scope;
+        private attrs;
+        constructor($scope: ControlScope, $element: JQuery, $attrs: ng.IAttributes);
+        private buildScope();
+        private onMenuDataReady(data);
+        private buildNode(data, parent?);
+    }
+}
+declare module sap.sbo.ui.controls {
+    import BaseControl = sap.sbo.ui.BaseControl;
+    interface TreeNodeScope extends ControlScope {
+        name: string;
+        isFolder: boolean;
+        expand: boolean;
+        nodes: any[];
+        logoClickHandler: Function;
+    }
+    class TreeNode extends BaseControl {
+        private scope;
+        private parent;
+        constructor($scope: TreeNodeScope, $element: JQuery, $attrs: ng.IAttributes);
+        buildScope(): void;
+        logoClickHandler(e: any): void;
+    }
+}
+declare module sap.sbo.ng4c.app {
+    class Backend {
     }
 }
 declare module sap.sbo.ng4c.launchpad.aside {
@@ -220,7 +309,7 @@ declare module sap.sbo.ng4c.launchpad.aside {
     }
     class MyMenu extends BaseController {
         private scope;
-        constructor($scope: Scope, $element: JQuery);
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
     }
 }
 declare module sap.sbo.ng4c.app {
@@ -229,27 +318,24 @@ declare module sap.sbo.ng4c.app {
         controller: Function;
     }
     interface IControl {
-        controllerName: string;
-        controller: Function;
-        directiveName: string;
-        directive: Function;
+        name: string;
+        directive: ng.IDirectiveFactory;
+    }
+    interface IService {
+        name: string;
+        service: Function;
     }
     class Registry {
         private static _controllers;
         private static _controls;
+        private static _services;
+        static servies: IService[];
         static controllers: IController[];
-        private static makeControl(packageStr, controller, directive);
         static controls: IControl[];
     }
 }
 declare module sap.sbo.ng4c.app {
     class Application {
         static main(): void;
-    }
-}
-declare module sap.sbo.ui.controls {
-    class TreeDirective {
-    }
-    class Tree {
     }
 }

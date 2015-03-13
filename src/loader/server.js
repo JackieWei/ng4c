@@ -118,6 +118,6 @@ http.createServer(function (req, res) {
     res.writeHead(200, {
         'Content-Type': 'text/plain'
     });
-    res.write('fake backend' + '\n' + JSON.stringify(req.headers, true, 2));
+    res.write('fake backend' + '\n' + JSON.stringify(req.headers, true, 2) + "\n" + req.url);
     res.end();
 }).listen(25001);

@@ -8,8 +8,8 @@ module sap.sbo.ng4c.launchpad.dashboard.tiles {
     export class Kpi extends BaseController {
         private scope: KpiProps;
 
-        public constructor($scope: Scope, $element: JQuery) {
-            super($scope, $element, "sap.sbo.ng4c.launchpad.aside.Kpi");
+        public constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes) {
+            super($scope, $element, $attrs, "sap.sbo.ng4c.launchpad.aside.Kpi");
             this.scope = <KpiProps>this.$scope;
         }
     }

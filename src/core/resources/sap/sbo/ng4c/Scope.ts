@@ -6,5 +6,7 @@
         height: number;
         left: number;
         top: number;
+
+        data: any;//raw object
     }
 } 

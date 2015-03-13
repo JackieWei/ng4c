@@ -52,6 +52,7 @@
   <ItemGroup>
     <None Include="bower.json" />
     <None Include="package.json" />
+    <None Include="server-quick.bat" />
     <None Include="server.bat" />
     <None Include="tsd.json" />
   </ItemGroup>

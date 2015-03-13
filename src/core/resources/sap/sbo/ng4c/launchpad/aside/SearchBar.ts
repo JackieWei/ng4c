@@ -8,8 +8,8 @@ module sap.sbo.ng4c.launchpad.aside {
     export class SearchBar extends BaseController {
         private scope: SearchBarProps;
 
-        public constructor($scope: Scope, $element: JQuery) {
-            super($scope, $element, "sap.sbo.ng4c.launchpad.aside.SearchBar");
+        public constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes) {
+            super($scope, $element, $attrs, "sap.sbo.ng4c.launchpad.aside.SearchBar");
             this.scope = <SearchBarProps>this.$scope;
         }
     }

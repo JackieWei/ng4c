@@ -11,8 +11,8 @@ module sap.sbo.ng4c.launchpad.dashboard {
 
         private scope: IDashboardScope;
 
-        public constructor($scope: Scope, $element: JQuery) {
-            super($scope, $element, "sap.sbo.ng4c.launchpad.dashboard.Dashboard");
+        public constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes) {
+            super($scope, $element, $attrs, "sap.sbo.ng4c.launchpad.dashboard.Dashboard");
 
             $scope.$on("showOrHideMenuBroadcast", $.proxy(this.onShowOrHideMenuBroadcast, this));
             this.scope = <IDashboardScope>this.$scope;
