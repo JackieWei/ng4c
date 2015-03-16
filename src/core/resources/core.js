@@ -129,6 +129,51 @@ var sap;
         (function (ng4c) {
             var app;
             (function (app) {
+                var config;
+                (function (config) {
+                    var UIConfig = (function () {
+                        function UIConfig() {
+                            this.menuFullWidth = 20;
+                            this.menuLightWidth = 5;
+                            this.tileBasicWidth = 15;
+                            this.tileBasicHeight = 12;
+                        }
+                        return UIConfig;
+                    })();
+                    config.UIConfig = UIConfig;
+                })(config = app.config || (app.config = {}));
+            })(app = ng4c.app || (ng4c.app = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var app;
+            (function (app) {
+                var UIConfig = sap.sbo.ng4c.app.config.UIConfig;
+                var Config = (function () {
+                    function Config() {
+                        this.ui = new UIConfig();
+                    }
+                    return Config;
+                })();
+                app.Config = Config;
+            })(app = ng4c.app || (ng4c.app = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var app;
+            (function (app) {
                 var ListCtrl = (function () {
                     function ListCtrl($scope, $route) {
                         console.log($route.current.params.bo_abbr);
@@ -160,31 +205,6 @@ var sap;
                     return EventRoute;
                 })();
                 app.EventRoute = EventRoute;
-            })(app = ng4c.app || (ng4c.app = {}));
-        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
-    })(sbo = sap.sbo || (sap.sbo = {}));
-})(sap || (sap = {}));
-var sap;
-(function (sap) {
-    var sbo;
-    (function (sbo) {
-        var ng4c;
-        (function (ng4c) {
-            var app;
-            (function (app) {
-                'use strict';
-                var Storage = (function () {
-                    function Storage() {
-                    }
-                    Storage.prototype.get = function (key) {
-                        return JSON.parse(localStorage.getItem(key) || '""');
-                    };
-                    Storage.prototype.set = function (key, value) {
-                        localStorage.setItem(key, JSON.stringify(value));
-                    };
-                    return Storage;
-                })();
-                app.Storage = Storage;
             })(app = ng4c.app || (ng4c.app = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
@@ -241,74 +261,27 @@ var sap;
         (function (ng4c) {
             var launchpad;
             (function (launchpad) {
-                var aside;
-                (function (aside) {
-                    var BaseController = sap.sbo.ng4c.BaseController;
-                    var AsideProps = (function () {
-                        function AsideProps() {
-                        }
-                        AsideProps.HIDE_WIDTH = 50;
-                        AsideProps.SHOW_WIDTH = 205;
-                        return AsideProps;
-                    })();
-                    aside.AsideProps = AsideProps;
-                    var Aside = (function (_super) {
-                        __extends(Aside, _super);
-                        function Aside($scope, $element, $attrs, storage) {
-                            _super.call(this, $scope, $element, $attrs, "sap.sbo.ng4c.launchpad.aside.Aside");
-                            $scope.$on("showOrHideMenuBroadcast", $.proxy(this.onShowOrHideMenuBroadcast, this));
-                            this.scope = this.$scope;
-                            this.scope.width = AsideProps.HIDE_WIDTH;
-                            this.scope.liteMode = true;
-                        }
-                        Aside.prototype.onShowOrHideMenuBroadcast = function (event, showOrHide) {
-                            if (showOrHide) {
-                                this.scope.width = AsideProps.SHOW_WIDTH;
-                            }
-                            else {
-                                this.scope.width = AsideProps.HIDE_WIDTH;
-                            }
-                            this.scope.liteMode = !showOrHide;
-                        };
-                        return Aside;
-                    })(BaseController);
-                    aside.Aside = Aside;
-                })(aside = launchpad.aside || (launchpad.aside = {}));
-            })(launchpad = ng4c.launchpad || (ng4c.launchpad = {}));
-        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
-    })(sbo = sap.sbo || (sap.sbo = {}));
-})(sap || (sap = {}));
-var sap;
-(function (sap) {
-    var sbo;
-    (function (sbo) {
-        var ng4c;
-        (function (ng4c) {
-            var launchpad;
-            (function (launchpad) {
                 var dashboard;
                 (function (dashboard) {
                     var BaseController = sap.sbo.ng4c.BaseController;
-                    var AsideProps = sap.sbo.ng4c.launchpad.aside.AsideProps;
-                    var Dashboard = (function (_super) {
-                        __extends(Dashboard, _super);
-                        function Dashboard($scope, $element, $attrs) {
-                            _super.call(this, $scope, $element, $attrs, "sap.sbo.ng4c.launchpad.dashboard.Dashboard");
-                            $scope.$on("showOrHideMenuBroadcast", $.proxy(this.onShowOrHideMenuBroadcast, this));
+                    var Tile = (function (_super) {
+                        __extends(Tile, _super);
+                        function Tile($scope, $element, $attrs, config) {
+                            _super.call(this, $scope, $element, $attrs, "sap.sbo.ng4c.launchpad.dashboard.Tile");
                             this.scope = this.$scope;
-                            this.scope.left = AsideProps.HIDE_WIDTH;
+                            this.config = config;
+                            this.scope.rawData = this.scope.data;
+                            var size = this.scope.rawData.Size.split(Tile.SPLIT);
+                            this.scope.sizeW = parseInt(size[0], 10);
+                            this.scope.sizeH = parseInt(size[1], 10);
+                            this.scope.width = this.scope.sizeW * this.config.ui.tileBasicWidth;
+                            this.scope.height = this.scope.sizeH * this.config.ui.tileBasicHeight;
+                            this.scope.innerTemplate = 'resources/sap/sbo/ng4c/launchpad/dashboard/tiles/KPI.html';
                         }
-                        Dashboard.prototype.onShowOrHideMenuBroadcast = function (event, showOrHide) {
-                            if (showOrHide) {
-                                this.scope.left = AsideProps.SHOW_WIDTH;
-                            }
-                            else {
-                                this.scope.left = AsideProps.HIDE_WIDTH;
-                            }
-                        };
-                        return Dashboard;
+                        Tile.SPLIT = 'x';
+                        return Tile;
                     })(BaseController);
-                    dashboard.Dashboard = Dashboard;
+                    dashboard.Tile = Tile;
                 })(dashboard = launchpad.dashboard || (launchpad.dashboard = {}));
             })(launchpad = ng4c.launchpad || (ng4c.launchpad = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
@@ -405,14 +378,49 @@ var sap;
     (function (sbo) {
         var ng4c;
         (function (ng4c) {
+            var app;
+            (function (app) {
+                'use strict';
+                var Storage = (function () {
+                    function Storage() {
+                    }
+                    Storage.prototype.get = function (key, defaultValue) {
+                        return localStorage.getItem(key) || defaultValue;
+                    };
+                    Storage.prototype.set = function (key, value) {
+                        localStorage.setItem(key, value);
+                    };
+                    Storage.prototype.getBoolean = function (key, defaultValue) {
+                        return this.get(key, defaultValue ? Storage.VAL_TRUE : Storage.VAL_FLASH) === Storage.VAL_TRUE;
+                    };
+                    Storage.prototype.setBoolean = function (key, value) {
+                        return this.set(key, value ? Storage.VAL_TRUE : Storage.VAL_FLASH);
+                    };
+                    Storage.VAL_TRUE = '1';
+                    Storage.VAL_FLASH = '0';
+                    return Storage;
+                })();
+                app.Storage = Storage;
+            })(app = ng4c.app || (ng4c.app = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
             var header;
             (function (header) {
                 var BaseController = sap.sbo.ng4c.BaseController;
                 var Begin = (function (_super) {
                     __extends(Begin, _super);
-                    function Begin($scope, $element, $attrs) {
+                    function Begin($scope, $element, $attrs, storage) {
                         _super.call(this, $scope, $element, $attrs, "sap.sbo.ng4c.header.Begin");
                         this.scope = $scope;
+                        this.storage = storage;
+                        this.scope.showOrHideLogo = !this.storage.getBoolean("showOrHideMenu", true);
                         this.scope.showOrHideMenu = $.proxy(this.showOrHideMenu, this);
                     }
                     Begin.prototype.showOrHideMenu = function (name) {
@@ -444,6 +452,53 @@ var sap;
                 })(BaseController);
                 footer.Footer = Footer;
             })(footer = ng4c.footer || (ng4c.footer = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var launchpad;
+            (function (launchpad) {
+                var aside;
+                (function (aside) {
+                    var BaseController = sap.sbo.ng4c.BaseController;
+                    var AsideProps = (function () {
+                        function AsideProps() {
+                        }
+                        AsideProps.HIDE_WIDTH = 50;
+                        AsideProps.SHOW_WIDTH = 205;
+                        return AsideProps;
+                    })();
+                    aside.AsideProps = AsideProps;
+                    var Aside = (function (_super) {
+                        __extends(Aside, _super);
+                        function Aside($scope, $element, $attrs, storage) {
+                            _super.call(this, $scope, $element, $attrs, "sap.sbo.ng4c.launchpad.aside.Aside");
+                            $scope.$on("showOrHideMenuBroadcast", $.proxy(this.onShowOrHideMenuBroadcast, this));
+                            this.scope = this.$scope;
+                            this.storage = storage;
+                            this.scope.liteMode = this.storage.getBoolean("showOrHideMenu", true);
+                            this.scope.width = this.scope.liteMode ? AsideProps.HIDE_WIDTH : AsideProps.SHOW_WIDTH;
+                        }
+                        Aside.prototype.onShowOrHideMenuBroadcast = function (event, showOrHide) {
+                            if (showOrHide) {
+                                this.scope.width = AsideProps.SHOW_WIDTH;
+                            }
+                            else {
+                                this.scope.width = AsideProps.HIDE_WIDTH;
+                            }
+                            this.scope.liteMode = !showOrHide;
+                            this.storage.setBoolean("showOrHideMenu", this.scope.liteMode);
+                        };
+                        return Aside;
+                    })(BaseController);
+                    aside.Aside = Aside;
+                })(aside = launchpad.aside || (launchpad.aside = {}));
+            })(launchpad = ng4c.launchpad || (ng4c.launchpad = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
 })(sap || (sap = {}));
@@ -579,9 +634,23 @@ var sap;
                 var BaseController = sap.sbo.ng4c.BaseController;
                 var Launchpad = (function (_super) {
                     __extends(Launchpad, _super);
-                    function Launchpad($scope, $element, $attrs) {
+                    function Launchpad($scope, $element, $attrs, config, storage) {
                         _super.call(this, $scope, $element, $attrs, "sap.sbo.ng4c.launchpad.Launchpad");
+                        this.scope = this.$scope;
+                        this.config = config;
+                        this.storage = storage;
+                        var showOrHide = this.storage.getBoolean("showOrHideMenu", true);
+                        this.scope.asideWidth = !showOrHide ? this.config.ui.menuFullWidth : this.config.ui.menuLightWidth;
+                        this.scope.$on("showOrHideMenuBroadcast", $.proxy(this.onShowOrHideMenuBroadcast, this));
                     }
+                    Launchpad.prototype.onShowOrHideMenuBroadcast = function (event, showOrHide) {
+                        if (showOrHide) {
+                            this.scope.asideWidth = this.config.ui.menuFullWidth;
+                        }
+                        else {
+                            this.scope.asideWidth = this.config.ui.menuLightWidth;
+                        }
+                    };
                     return Launchpad;
                 })(BaseController);
                 launchpad.Launchpad = Launchpad;
@@ -607,6 +676,7 @@ var sap;
                             function Kpi($scope, $element, $attrs) {
                                 _super.call(this, $scope, $element, $attrs, "sap.sbo.ng4c.launchpad.aside.Kpi");
                                 this.scope = this.$scope;
+                                this.scope.rawData = this.scope.data;
                             }
                             return Kpi;
                         })(BaseController);
@@ -745,6 +815,7 @@ var sap;
                         for (var i = 0, total = menuData.length; i < total; i++) {
                             this.scope.nodes.push(this.buildNode(menuData[i]));
                         }
+                        this.scope.$applyAsync();
                     };
                     Tree.prototype.buildNode = function (data, parent) {
                         if (parent === void 0) { parent = null; }
@@ -772,6 +843,41 @@ var sap;
                 controls.Tree = Tree;
             })(controls = ui.controls || (ui.controls = {}));
         })(ui = sbo.ui || (sbo.ui = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var launchpad;
+            (function (launchpad) {
+                var dashboard;
+                (function (dashboard) {
+                    var BaseController = sap.sbo.ng4c.BaseController;
+                    var Dashboard = (function (_super) {
+                        __extends(Dashboard, _super);
+                        function Dashboard($scope, $element, $attrs) {
+                            _super.call(this, $scope, $element, $attrs, "sap.sbo.ng4c.launchpad.dashboard.Dashboard");
+                            this.scope = this.$scope;
+                            this.buildScope();
+                        }
+                        Dashboard.prototype.buildScope = function () {
+                            $.ajax('resources/sap/sbo/ng4c/launchpad/dashboard/Pages.json', {
+                                async: true,
+                                success: $.proxy(this.onTilesLoaded, this)
+                            });
+                        };
+                        Dashboard.prototype.onTilesLoaded = function (data) {
+                            this.scope.tiles = data[0].Tiles;
+                        };
+                        return Dashboard;
+                    })(BaseController);
+                    dashboard.Dashboard = Dashboard;
+                })(dashboard = launchpad.dashboard || (launchpad.dashboard = {}));
+            })(launchpad = ng4c.launchpad || (ng4c.launchpad = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
 })(sap || (sap = {}));
 var sap;
@@ -817,6 +923,27 @@ var sap;
                 controls.TreeNode = TreeNode;
             })(controls = ui.controls || (ui.controls = {}));
         })(ui = sbo.ui || (sbo.ui = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var app;
+            (function (app) {
+                var BodyCtrl = (function () {
+                    function BodyCtrl($scope) {
+                        $scope.$on("showOrHideMenu", function (event, showOrHide) {
+                            $scope.$broadcast("showOrHideMenuBroadcast", showOrHide);
+                        });
+                    }
+                    return BodyCtrl;
+                })();
+                app.BodyCtrl = BodyCtrl;
+            })(app = ng4c.app || (ng4c.app = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
 })(sap || (sap = {}));
 var sap;
@@ -873,6 +1000,17 @@ var sap;
                 var Registry = (function () {
                     function Registry() {
                     }
+                    Object.defineProperty(Registry, "constants", {
+                        get: function () {
+                            if (Registry._constants.length > 0)
+                                return Registry._constants;
+                            var constants = Registry._constants;
+                            constants.push({ name: "config", constant: new sap.sbo.ng4c.app.Config() });
+                            return constants;
+                        },
+                        enumerable: true,
+                        configurable: true
+                    });
                     Object.defineProperty(Registry, "servies", {
                         get: function () {
                             if (Registry._services.length > 0)
@@ -891,12 +1029,14 @@ var sap;
                             if (Registry._controllers.length > 0)
                                 return Registry._controllers;
                             var collection = Registry._controllers;
+                            collection.push({ name: "sap.sbo.ng4c.app.BodyCtrl", controller: sap.sbo.ng4c.app.BodyCtrl });
                             collection.push({ name: "sap.sbo.ng4c.app.AppCtrl", controller: sap.sbo.ng4c.app.AppCtrl });
                             collection.push({ name: "sap.sbo.ng4c.app.ListCtrl", controller: sap.sbo.ng4c.app.ListCtrl });
                             collection.push({ name: "sap.sbo.ng4c.app.DetailCtrl", controller: sap.sbo.ng4c.app.DetailCtrl });
                             collection.push({ name: "sap.sbo.ng4c.app.EventRoute", controller: sap.sbo.ng4c.app.EventRoute });
                             collection.push({ name: "sap.sbo.ng4c.launchpad.Launchpad", controller: sap.sbo.ng4c.launchpad.Launchpad });
                             collection.push({ name: "sap.sbo.ng4c.launchpad.dashboard.Dashboard", controller: sap.sbo.ng4c.launchpad.dashboard.Dashboard });
+                            collection.push({ name: "sap.sbo.ng4c.launchpad.dashboard.Tile", controller: sap.sbo.ng4c.launchpad.dashboard.Tile });
                             collection.push({ name: "sap.sbo.ng4c.launchpad.dashboard.tiles.Kpi", controller: sap.sbo.ng4c.launchpad.dashboard.tiles.Kpi });
                             collection.push({ name: "sap.sbo.ng4c.launchpad.aside.Aside", controller: sap.sbo.ng4c.launchpad.aside.Aside });
                             collection.push({ name: "sap.sbo.ng4c.launchpad.aside.LightAccess", controller: sap.sbo.ng4c.launchpad.aside.LightAccess });
@@ -931,6 +1071,7 @@ var sap;
                     Registry._controllers = [];
                     Registry._controls = [];
                     Registry._services = [];
+                    Registry._constants = [];
                     return Registry;
                 })();
                 app.Registry = Registry;
@@ -955,6 +1096,7 @@ var sap;
                         var modules = _app.Registry.controllers;
                         var controls = _app.Registry.controls;
                         var services = _app.Registry.servies;
+                        var constants = _app.Registry.constants;
                         modules.forEach(function (e) {
                             app.controller(e.name, e.controller);
                         });
@@ -964,9 +1106,12 @@ var sap;
                         services.forEach(function (e) {
                             app.service(e.name, e.service);
                         });
+                        constants.forEach(function (e) {
+                            app.constant(e.name, e.constant);
+                        });
                         app.config(['$routeProvider', function ($routeProvider) {
                             $routeProvider.when('/', {
-                                templateUrl: 'resources/sap/sbo/ng4c/app/Application.html',
+                                templateUrl: 'resources/sap/sbo/ng4c/app/Dashboard.html',
                                 controller: 'sap.sbo.ng4c.app.AppCtrl'
                             });
                             $routeProvider.when('/list/:bo_abbr', {

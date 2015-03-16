@@ -42,6 +42,21 @@ declare module sap.sbo.ng4c.app {
         constructor($scope: EventRouteScope);
     }
 }
+declare module sap.sbo.ng4c.app.config {
+    class UIConfig {
+        menuFullWidth: number;
+        menuLightWidth: number;
+        tileBasicWidth: number;
+        tileBasicHeight: number;
+    }
+}
+declare module sap.sbo.ng4c.app {
+    import UIConfig = sap.sbo.ng4c.app.config.UIConfig;
+    class Config {
+        ui: UIConfig;
+        constructor();
+    }
+}
 declare module sap.sbo.ng4c.app {
     interface ListScope extends ng.IScope {
         action: string;
@@ -58,12 +73,6 @@ declare module sap.sbo.ng4c.app {
     }
     class EventRoute {
         constructor($scope: EventRouteScope, $element: JQuery);
-    }
-}
-declare module sap.sbo.ng4c.app {
-    class Storage {
-        get(key: string): string;
-        set(key: string, value: any): void;
     }
 }
 declare module sap.sbo.ng4c {
@@ -94,30 +103,20 @@ declare module sap.sbo.ng4c {
         protected registerCssName(packageName: any): void;
     }
 }
-declare module sap.sbo.ng4c.launchpad.aside {
-    import BaseController = sap.sbo.ng4c.BaseController;
-    import Storage = sap.sbo.ng4c.app.Storage;
-    interface IAsideScope extends Scope {
-        liteMode: boolean;
-    }
-    class AsideProps {
-        static HIDE_WIDTH: number;
-        static SHOW_WIDTH: number;
-    }
-    class Aside extends BaseController {
-        private scope;
-        constructor($scope: IAsideScope, $element: JQuery, $attrs: ng.IAttributes, storage: Storage);
-        private onShowOrHideMenuBroadcast(event, showOrHide);
-    }
-}
 declare module sap.sbo.ng4c.launchpad.dashboard {
     import BaseController = sap.sbo.ng4c.BaseController;
-    interface IDashboardScope extends Scope {
+    import Config = sap.sbo.ng4c.app.Config;
+    interface TileScope extends Scope {
+        rawData: TileData;
+        sizeW: number;
+        sizeH: number;
+        innerTemplate: string;
     }
-    class Dashboard extends BaseController {
+    class Tile extends BaseController {
+        private static SPLIT;
         private scope;
-        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
-        private onShowOrHideMenuBroadcast(event, showOrHide);
+        private config;
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes, config: Config);
     }
 }
 declare module sap.sbo.ng4c.header {
@@ -148,15 +147,27 @@ declare module sap.sbo.ng4c.app {
         constructor($scope: ng.IScope, $route: ng.route.IRouteService);
     }
 }
+declare module sap.sbo.ng4c.app {
+    class Storage {
+        private static VAL_TRUE;
+        private static VAL_FLASH;
+        get(key: string, defaultValue?: string): string;
+        set(key: string, value: string): void;
+        getBoolean(key: string, defaultValue?: boolean): boolean;
+        setBoolean(key: string, value: boolean): void;
+    }
+}
 declare module sap.sbo.ng4c.header {
     import BaseController = sap.sbo.ng4c.BaseController;
+    import Storage = sap.sbo.ng4c.app.Storage;
     interface BeginScope extends Scope {
         showOrHideMenu: Function;
         showOrHideLogo: boolean;
     }
     class Begin extends BaseController {
         private scope;
-        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
+        private storage;
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes, storage: Storage);
         private showOrHideMenu(name);
     }
 }
@@ -164,6 +175,23 @@ declare module sap.sbo.ng4c.footer {
     import BaseController = sap.sbo.ng4c.BaseController;
     class Footer extends BaseController {
         constructor($scope: any, $element: JQuery, $attrs: ng.IAttributes);
+    }
+}
+declare module sap.sbo.ng4c.launchpad.aside {
+    import BaseController = sap.sbo.ng4c.BaseController;
+    import Storage = sap.sbo.ng4c.app.Storage;
+    interface IAsideScope extends Scope {
+        liteMode: boolean;
+    }
+    class AsideProps {
+        static HIDE_WIDTH: number;
+        static SHOW_WIDTH: number;
+    }
+    class Aside extends BaseController {
+        private scope;
+        private storage;
+        constructor($scope: IAsideScope, $element: JQuery, $attrs: ng.IAttributes, storage: Storage);
+        private onShowOrHideMenuBroadcast(event, showOrHide);
     }
 }
 declare module sap.sbo.ng4c.launchpad.aside {
@@ -212,13 +240,23 @@ declare module sap.sbo.ng4c.launchpad.aside {
 }
 declare module sap.sbo.ng4c.launchpad {
     import BaseController = sap.sbo.ng4c.BaseController;
+    import Config = sap.sbo.ng4c.app.Config;
+    import Storage = sap.sbo.ng4c.app.Storage;
+    interface LaunchpadScope extends Scope {
+        asideWidth: number;
+    }
     class Launchpad extends BaseController {
-        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
+        private scope;
+        private config;
+        private storage;
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes, config: Config, storage: Storage);
+        onShowOrHideMenuBroadcast(event: ng.IAngularEvent, showOrHide: boolean): void;
     }
 }
 declare module sap.sbo.ng4c.launchpad.dashboard.tiles {
     import BaseController = sap.sbo.ng4c.BaseController;
     interface KpiProps extends Scope {
+        rawData: TileData;
     }
     class Kpi extends BaseController {
         private scope;
@@ -282,6 +320,30 @@ declare module sap.sbo.ui.controls {
         private buildNode(data, parent?);
     }
 }
+declare module sap.sbo.ng4c.launchpad.dashboard {
+    import BaseController = sap.sbo.ng4c.BaseController;
+    interface DashboardScope extends Scope {
+        tiles: TileData[];
+    }
+    interface PageData {
+        PageId: string;
+        Name: string;
+        Tiles: TileData[];
+    }
+    interface TileData {
+        TileId: string;
+        Index: string;
+        Size: string;
+        Type: string;
+        WidgetEntry: string;
+    }
+    class Dashboard extends BaseController {
+        private scope;
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
+        private buildScope();
+        private onTilesLoaded(data);
+    }
+}
 declare module sap.sbo.ui.controls {
     import BaseControl = sap.sbo.ui.BaseControl;
     interface TreeNodeScope extends ControlScope {
@@ -297,6 +359,11 @@ declare module sap.sbo.ui.controls {
         constructor($scope: TreeNodeScope, $element: JQuery, $attrs: ng.IAttributes);
         buildScope(): void;
         logoClickHandler(e: any): void;
+    }
+}
+declare module sap.sbo.ng4c.app {
+    class BodyCtrl {
+        constructor($scope: ng.IScope);
     }
 }
 declare module sap.sbo.ng4c.app {
@@ -325,10 +392,16 @@ declare module sap.sbo.ng4c.app {
         name: string;
         service: Function;
     }
+    interface IConstant {
+        name: string;
+        constant: Object;
+    }
     class Registry {
         private static _controllers;
         private static _controls;
         private static _services;
+        private static _constants;
+        static constants: IConstant[];
         static servies: IService[];
         static controllers: IController[];
         static controls: IControl[];

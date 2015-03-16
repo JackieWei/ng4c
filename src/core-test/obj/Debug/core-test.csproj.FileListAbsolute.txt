@@ -2,6 +2,6 @@ C:\ng\ng4c\src\core-test\bin\core-test.dll
 C:\ng\ng4c\src\core-test\bin\core-test.pdb
 C:\ng\ng4c\src\core-test\bin\core.dll
 C:\ng\ng4c\src\core-test\bin\core.pdb
+C:\ng\ng4c\src\core-test\obj\Debug\core-test.csprojResolveAssemblyReference.cache
 C:\ng\ng4c\src\core-test\obj\Debug\core-test.dll
 C:\ng\ng4c\src\core-test\obj\Debug\core-test.pdb
-C:\ng\ng4c\src\core-test\obj\Debug\core-test.csprojResolveAssemblyReference.cache
