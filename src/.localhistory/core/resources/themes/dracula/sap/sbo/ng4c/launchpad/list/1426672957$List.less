@@ -1,0 +1,1138 @@
+﻿@input_height: 2.0rem;
+@row_input_height: 2.0rem;
+@grid_footer: 1.6rem;
+
+.sap-sbo-ng4c-launchpad.list.List {
+    .sapMPage {
+        .sapMITBContent;
+
+{
+    padding: 0;
+}
+
+.sapMPanel {
+    .sapMPanelContent;
+
+{
+    padding: .3rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+}
+
+.sapUiForm.sapUiFormEdit .sapMLabel {
+    height: 2.5rem;
+    line-height: 2.5rem;
+}
+
+.sapUiRespGridMedia-Std-Tablet.sapUiRespGridHSpace0 > .sapUiRespGridSpanM4 {
+    width: 48%;
+    border: none;
+    margin: 5px;
+}
+
+.sapMListTblCell {
+    padding: 0;
+}
+
+.sapUiRespGrid.sapUiRespGridHSpace1 {
+    padding: 0;
+}
+
+.sapUiRespGrid.sapUiRespGridHSpace1 > div {
+    margin: 0;
+}
+
+.sapUiRespGridMedia-Std-Desktop.sapUiRespGridHSpace1 > .sapUiRespGridSpanL12 {
+    width: 100%;
+}
+
+.sapUiFormResGrid > div {
+    padding: 0;
+}
+
+.sapMNav.sapMSplitContainerMaster {
+}
+
+.sapUiRespGridMedia-Std-Desktop.sapUiRespGridHSpace0 > .sapUiRespGridSpanL4 {
+    width: 48%;
+    margin: 0.4rem;
+}
+
+.sapMListTblCell:first-child, .sapMListTblNone:first-child + .sapMListTblCell {
+    padding-left: 0;
+}
+
+.sapMLIB {
+    padding: 0;
+}
+
+}
+
+.sapMPopover {
+    .sapMSLITitleOnly;
+
+{
+    font-size: 0.8rem;
+}
+
+}
+
+//Panel .sapB1MPanel.sapMPanel {
+.sapMPanelBG;
+
+{
+    background: transparent;
+}
+
+.sapMBtn {
+    height: 2.5rem;
+    padding: 0;
+}
+
+.sapMLIBShowSeparator > td {
+    border: 0;
+}
+
+.sapB1MSlt {
+    height: @input_height;
+    border: none;
+    background: transparent;
+    .sapMSltArrow;
+
+{
+    line-height: @input_height;
+}
+
+&.sapMSlt > .sapMSltLabel {
+    line-height: 1.875rem;
+    width: 80%;
+    border: 1px solid #bfbfbf;
+    border-width: 1px 0 1px 1px;
+    background: #ffffff;
+}
+
+&.sapMSlt .sapMSltArrow {
+    right: 20%;
+    border: 1px solid #bfbfbf;
+    border-width: 0 1px 0 0;
+}
+
+}
+
+.sapB1MInput {
+    height: @input_height;
+    .sapMInputBaseInner;
+
+{
+    height: @input_height;
+    width: 80%;
+}
+
+}
+
+.sapB1MInputBase {
+    height: 3rem;
+    .sapMInputBaseInner;
+
+{
+    height: @input_height;
+}
+
+&.sapMDP > .sapMInputBaseInner {
+    height: @input_height;
+    width: 80%;
+}
+
+}
+
+.sapB1LI {
+    height: @input_height;
+    .sapMInputBaseInner;
+
+{
+    height: @input_height;
+}
+
+&.sapMDP > .sapUiIcon, &.sapMDP.sapMInputIE9 > .sapUiIcon {
+    height: 2rem;
+    width: 2rem;
+    line-height: 2rem;
+    position: absolute;
+    right: 20%;
+    top: 0.25rem;
+    cursor: pointer;
+}
+
+.indicator {
+    left: 0;
+    color: skyblue;
+}
+
+.sapMInputBaseInner {
+    padding-left: 2rem;
+}
+
+}
+
+.sapB1MDP {
+    &.sapMInputBase;
+
+{
+    padding: 0;
+    height: 2.5rem;
+}
+
+&.sapMDP > .sapUiIcon, .sapMDP.sapMInputIE9 > .sapUiIcon {
+    height: @input_height;
+    width: @input_height;
+    top: 0;
+    right: 20%;
+}
+
+.sapMInputBaseInner {
+    height: @input_height;
+    width: 80%;
+}
+
+}
+
+.sapMTextArea.sapB1MTextArea {
+    textarea;
+
+{
+    width: 80%;
+    padding: 0.625rem 0 0.75rem 0.75rem;
+    height: 3rem;
+}
+
+}
+
+.sapB1MGrid {
+    .sapMBtn;
+
+{
+    height: @input_height;
+}
+
+.sapUiTableFtr {
+    padding: 0;
+}
+
+.sapUiTableCell {
+    padding: 0;
+}
+
+.sapB1MSlt {
+    .sapMSltArrow;
+
+{
+}
+
+&.sapMSlt > .sapMSltLabel {
+    width: 100% !important;
+}
+
+&.sapMSlt .sapMSltArrow {
+    right: 0 !important;
+    top: 0 !important;
+}
+
+}
+
+.sapB1MInput {
+    .sapMInputBaseInner;
+
+{
+    width: 100% !important;
+}
+
+}
+
+.sapB1MInputBase {
+    .sapMInputBaseInner;
+
+{
+}
+
+&.sapMDP > .sapMInputBaseInner {
+    width: 100% !important;
+}
+
+}
+
+.sapB1LI {
+    .sapMInputBaseInner;
+
+{
+}
+
+&.sapMDP > .sapUiIcon, &.sapMDP.sapMInputIE9 > .sapUiIcon {
+    right: 0 !important;
+    top: 0 !important;
+}
+
+.indicator {
+}
+
+.sapMInputBaseInner {
+}
+
+}
+
+.sapB1MDP {
+    &.sapMInputBase;
+
+{
+}
+
+&.sapMDP > .sapUiIcon, .sapMDP.sapMInputIE9 > .sapUiIcon {
+    right: 0 !important;
+    top: 0 !important;
+}
+
+.sapMInputBaseInner {
+    width: 100% !important;
+}
+
+}
+
+.sapMTextArea.sapB1MTextArea {
+    textarea;
+
+{
+    width: 100% !important;
+}
+
+}
+
+.sapMLabel {
+    height: initial;
+    line-height: initial;
+}
+
+.sapMLabel:after {
+    display: none;
+}
+
+&.sapUiTableTr > td.sapUiTableTdFirst > .sapUiTableCell {
+    padding: 0;
+}
+
+.sapMInputBase {
+    padding: 0;
+    .sapMInputBaseInner;
+
+{
+    border: none;
+}
+
+}
+
+.sapMPanelBG {
+    background: transparent;
+}
+
+.sapMGridFooter {
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    user-select: none;
+    > .sapMGridFooterBackground;
+
+{
+    background: rgba(255, 255, 255, 0.8);
+    height: @grid_footer;
+    width: 100%;
+}
+
+> button {
+    display: none;
+    background: rgba(255, 255, 255, .8);
+    width: 100%;
+    height: @grid_footer;
+}
+
+.sapMBtn {
+    height: @grid_footer;
+    .sapMBtnInner;
+
+{
+    height: @grid_footer;
+    border: none;
+    .sapMBtnIcon;
+
+{
+    line-height: @grid_footer;
+}
+
+}
+}
+
+&:hover {
+    > .sapMGridFooterBackground;
+
+{
+    display: none;
+}
+
+> button {
+    display: block;
+}
+
+}
+}
+
+.sapB1MSlt {
+    height: @row_input_height;
+    border: none;
+    background: transparent;
+    .sapMSltArrow;
+
+{
+    line-height: @row_input_height;
+}
+
+&.sapMSlt > .sapMSltLabel {
+    line-height: 1.875rem;
+    width: 80%;
+    border: 1px solid #bfbfbf;
+    border-width: 1px 0 1px 1px;
+    background: #ffffff;
+}
+
+&.sapMSlt .sapMSltArrow {
+    right: 20%;
+    border: 1px solid #bfbfbf;
+    border-width: 0 1px 0 0;
+}
+
+}
+
+.sapB1MInput {
+    height: @row_input_height;
+    .sapMInputBaseInner;
+
+{
+    height: @row_input_height;
+    width: 80%;
+}
+
+}
+
+.sapB1MInputBase {
+    height: @row_input_height;
+    .sapMInputBaseInner;
+
+{
+    height: @row_input_height;
+}
+
+&.sapMDP > .sapMInputBaseInner {
+    height: @row_input_height;
+    width: 80%;
+}
+
+}
+
+.sapB1LI {
+    height: @row_input_height;
+    .sapMInputBaseInner;
+
+{
+    height: @row_input_height;
+}
+
+&.sapMDP > .sapUiIcon, &.sapMDP.sapMInputIE9 > .sapUiIcon {
+    height: @row_input_height;
+    width: @row_input_height;
+    line-height: @row_input_height;
+    position: absolute;
+    right: 20%;
+    top: 0.25rem;
+    cursor: pointer;
+}
+
+.sapMInputBaseInner {
+    padding-left: 2rem;
+}
+
+}
+
+.sapB1MDP {
+    &.sapMInputBase;
+
+{
+    padding: 0;
+    height: @row_input_height;
+}
+
+&.sapMDP > .sapUiIcon, .sapMDP.sapMInputIE9 > .sapUiIcon {
+    height: @row_input_height;
+    width: @row_input_height;
+    top: 0;
+    right: 20%;
+}
+
+.sapMInputBaseInner {
+    height: @row_input_height;
+    width: 80%;
+}
+
+}
+
+.sapB1MGrid {
+    .sapUiTableRSel .sapUiTableTr >
+    td .sapUiTableTdFirst > .sapUiTableCell;
+
+{
+    padding: 0;
+}
+
+.sapUiTableRSel .sapUiTableTr > td.sapUiTableTdFirst {
+    padding: 0;
+}
+
+&.sapUiTableTr > td.sapUiTableTdFirst > .sapUiTableCell {
+    padding: 0;
+}
+
+.sapMInputBase {
+    padding: 0;
+    .sapMInputBaseInner;
+
+{
+    border: none;
+}
+
+}
+
+.sapMLabel:after {
+    display: none;
+    .sapMPanelBG;
+
+{
+    background: transparent;
+}
+
+.sapMGridFooter {
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    user-select: none;
+    > .sapMGridFooterBackground;
+
+{
+    background: rgba(255, 255, 255, 0.8);
+    height: @grid_footer;
+    width: 100%;
+}
+
+> button {
+    display: none;
+    background: rgba(255, 255, 255, .8);
+    width: 100%;
+    height: @grid_footer;
+}
+
+.sapMBtn {
+    height: @grid_footer;
+    .sapMBtnInner;
+
+{
+    height: @grid_footer;
+    border: none;
+    .sapMBtnIcon;
+
+{
+    line-height: @grid_footer;
+}
+
+}
+}
+
+&:hover {
+    > .sapMGridFooterBackground;
+
+{
+    display: none;
+}
+
+> button {
+    display: block;
+}
+
+}
+}
+
+.sapB1MSlt {
+    height: @row_input_height;
+    border: none;
+    background: transparent;
+    .sapMSltArrow;
+
+{
+    line-height: @row_input_height;
+}
+
+&.sapMSlt > .sapMSltLabel {
+    line-height: 1.875rem;
+    width: 80%;
+    border: 1px solid #bfbfbf;
+    border-width: 1px 0 1px 1px;
+    background: #ffffff;
+}
+
+&.sapMSlt .sapMSltArrow {
+    right: 20%;
+    border: 1px solid #bfbfbf;
+    border-width: 0 1px 0 0;
+}
+
+&.sapMSlt:not(.sapMSltDisabled), &.sapMSlt:not(.sapMSltDisabled) > .sapMSltLabel {
+    cursor: default;
+    .sapMSltLabel;
+
+{
+    cursor: pointer;
+}
+
+.sapMSltArrow {
+    cursor: pointer;
+}
+
+}
+}
+
+.sapB1MInput {
+    height: @row_input_height;
+    .sapMInputBaseInner;
+
+{
+    height: @row_input_height;
+    width: 80%;
+}
+
+}
+
+.sapMTextArea.sapB1MTextArea {
+    textarea;
+
+{
+    width: 80%;
+}
+
+> .sapMTextAreaInner {
+    padding: 0.625rem 0.625rem 0;
+}
+
+}
+
+.sapB1MInputBase {
+    height: @row_input_height;
+    .sapMInputBaseInner;
+
+{
+    height: @row_input_height;
+}
+
+&.sapMDP > .sapMInputBaseInner {
+    height: @row_input_height;
+    width: 80%;
+}
+
+}
+
+.sapB1LI {
+    height: @row_input_height;
+    .sapMInputBaseInner;
+
+{
+    height: @row_input_height;
+}
+
+&.sapMDP > .sapUiIcon, &.sapMDP.sapMInputIE9 > .sapUiIcon {
+    height: @row_input_height;
+    width: @row_input_height;
+    line-height: @row_input_height;
+    position: absolute;
+    right: 20%;
+    top: 0.25rem;
+    cursor: pointer;
+}
+
+.sapMInputBaseInner {
+    padding-left: 2rem;
+}
+
+}
+
+.sapB1MDP {
+    &.sapMInputBase;
+
+{
+    padding: 0;
+    height: @row_input_height;
+}
+
+&.sapMDP > .sapUiIcon, .sapMDP.sapMInputIE9 > .sapUiIcon {
+    height: @input_height;
+    width: @input_height;
+    top: 0;
+    right: 20%;
+}
+
+.sapMInputBaseInner {
+    height: @row_input_height;
+    width: 80%;
+}
+
+}
+
+.sapB1MGrid {
+    &.sapUiTableTr > td.sapUiTableTdFirst > .sapUiTableCell;
+
+{
+    padding: 0;
+}
+
+.sapMInputBase {
+    padding: 0;
+    .sapMInputBaseInner;
+
+{
+    border: none;
+}
+
+}
+
+.sapUiTableFtr {
+    padding: 0;
+}
+
+.sapB1MSlt {
+    cursor: default;
+    .sapMSltArrow;
+
+{
+    line-height: @input_height;
+}
+
+&.sapMSlt > .sapMSltLabel {
+    width: 100%;
+}
+
+&.sapMSlt .sapMSltArrow {
+    right: 0;
+}
+
+}
+
+.sapB1MInput {
+    .sapMInputBaseInner;
+
+{
+    width: 100%;
+}
+
+}
+
+.sapB1MInputBase {
+    .sapMInputBaseInner;
+
+{
+}
+
+&.sapMDP > .sapMInputBaseInner {
+    width: 100%;
+}
+
+}
+
+.sapB1LI {
+    .sapMInputBaseInner;
+
+{
+}
+
+&.sapMDP > .sapUiIcon, &.sapMDP.sapMInputIE9 > .sapUiIcon {
+    right: 0;
+}
+
+}
+
+.sapB1MDP {
+    &.sapMInputBase;
+
+{
+}
+
+&.sapMDP > .sapUiIcon, .sapMDP.sapMInputIE9 > .sapUiIcon {
+    top: 0;
+    right: 0;
+}
+
+.sapMInputBaseInner {
+    width: 100%;
+}
+
+}
+}
+
+.sapUiTableFtr {
+    padding: 0;
+}
+
+.sapB1MSlt {
+    .sapMSltArrow;
+
+{
+    line-height: @input_height;
+}
+
+&.sapMSlt > .sapMSltLabel {
+    width: 100%;
+}
+
+&.sapMSlt .sapMSltArrow {
+    right: 0;
+}
+
+}
+
+.sapB1MInput {
+    .sapMInputBaseInner;
+
+{
+    width: 100%;
+}
+
+}
+
+.sapB1MInputBase {
+    .sapMInputBaseInner;
+
+{
+}
+
+&.sapMDP > .sapMInputBaseInner {
+    width: 100%;
+}
+
+}
+
+.sapB1LI {
+    .sapMInputBaseInner;
+
+{
+}
+
+&.sapMDP > .sapUiIcon, &.sapMDP.sapMInputIE9 > .sapUiIcon {
+    right: 0;
+}
+
+}
+
+.sapB1MDP {
+    &.sapMInputBase;
+
+{
+}
+
+&.sapMDP > .sapUiIcon, .sapMDP.sapMInputIE9 > .sapUiIcon {
+    top: 0;
+    right: 0;
+}
+
+.sapMInputBaseInner {
+    width: 100%;
+}
+
+}
+}
+
+.sapUiTableFtr {
+    padding: 0;
+}
+
+.sapB1MSlt {
+    .sapMSltArrow;
+
+{
+    line-height: @input_height;
+}
+
+&.sapMSlt > .sapMSltLabel {
+    width: 100%;
+}
+
+&.sapMSlt .sapMSltArrow {
+    right: 0;
+}
+
+}
+
+.sapB1MInput {
+    .sapMInputBaseInner;
+
+{
+    width: 100%;
+}
+
+}
+
+.sapB1MInputBase {
+    .sapMInputBaseInner;
+
+{
+}
+
+&.sapMDP > .sapMInputBaseInner {
+    width: 100%;
+}
+
+}
+
+.sapB1LI {
+    .sapMInputBaseInner;
+
+{
+}
+
+&.sapMDP > .sapUiIcon, &.sapMDP.sapMInputIE9 > .sapUiIcon {
+    right: 0;
+}
+
+}
+
+.sapB1MDP {
+    &.sapMInputBase;
+
+{
+}
+
+&.sapMDP > .sapUiIcon, .sapMDP.sapMInputIE9 > .sapUiIcon {
+    top: 0;
+    right: 0;
+}
+
+.sapMInputBaseInner {
+    width: 100%;
+}
+
+}
+}
+}
+}
+
+.b1ListPage {
+    .sapMITBTextOnly;
+
+{
+    .sapMITBTab;
+
+{
+    text-align: center;
+    margin-top: 8px;
+}
+
+.sapMITBFilter {
+    .sapMITBCount;
+
+{
+    color: #7f7f7f;
+}
+
+}
+
+.sapMITBFilterDefault.sapMITBSelected > .sapMITBText, .sapMITBFilterDefault > .sapMITBText {
+    color: #01afef;
+    text-align: center;
+    font-size: 150%;
+    font-weight: 700;
+}
+
+.sapMITBSelected > .sapMITBContentArrow {
+    border-bottom: solid 8px #01afef;
+}
+
+}
+
+.sapMITBTextOnly > .sapMITBVertical {
+    height: auto;
+}
+
+.sapMITBContent {
+    background-color: #ceebf1;
+}
+
+}
+
+.sapUiUfdShell .sapUiUfdShellHead > div {
+    background: #fff;
+}
+
+.sap-desktop .sapMIBar.sapMHeader-CTX {
+    background-color: #ebf6f9;
+}
+
+.sapMITH > span.sapMITBArrowScroll {
+    z-index: 100;
+}
+
+.sapMITBHead.sapMITBTextOnly {
+    margin: 0;
+    background-color: #fff;
+}
+
+.sapMITBHead > .sapMITBItem {
+    width: 24.90%;
+    margin-left: 0;
+    margin-right: 0;
+    border-right: solid 1px #f3f3f3;
+}
+
+.sapMITBHead > .sapMITBItem:last-child {
+    border-right: none;
+}
+
+.sapMITBItem > .sapMITBText {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.sapMITBItem > .sapMITBText {
+    text-align: center;
+    font-weight: 700;
+}
+
+.sapMPanelBG {
+    background-color: #c4e6ee;
+}
+
+.b1FilterPanel .sapMFlexBox {
+    position: absolute;
+    right: 1em;
+    top: .3em;
+}
+
+.b1FilterPanel .sapMFlexItem button {
+    float: right;
+}
+
+.b1FilterPanel .sapMFlexItem .sapMLnk {
+    padding-bottom: .3em;
+}
+
+.b1FilterPanel .sapMFlexBox .sapMFlexItem {
+    text-align: center;
+}
+
+.b1FilterPanel .sapMPanelContent {
+    overflow: auto;
+}
+
+.b1FilterPanel .sapMPanelWrappingDivTb {
+    display: none;
+}
+
+.b1FilterPanel .sapMListUl {
+    margin-right: 3em;
+}
+
+.b1FilterPanel .sapMLIB {
+    width: 24%;
+    border-bottom: none;
+    float: left;
+    margin-left: .5%;
+    background: none;
+}
+
+.b1ToggleContainer .sapMPanelWrappingDiv {
+    display: none;
+}
+
+.b1ToggleContainer .sapMPanelBG {
+    background-color: #ceebf1;
+    margin: 0 1rem;
+}
+
+.sapUiTableColHdrScr {
+    background-color: #b5b5b5;
+    color: #fff;
+}
+
+.chartContainer .sapMPanelContent {
+    min-height: 400px;
+}
+
+.chartContainer canvas.flot-base {
+    background-color: #fffeed;
+}
+
+.b1Toolbar1.sapMTB {
+    border-bottom: none;
+}
+
+.sapB1FilterDialog {
+    .sapUiFormEdit.sapUiFormM;
+
+{
+    .sapUiFormResGridCont > .sapUiFormResGridLbl
+    : not(.sapUiRespGridSpanS12);
+
+{
+    padding-top: 0.3rem;
+}
+
+}
+}
+
+.sapUiTableColHdr .sapUiTableCol .sapUiTableColCell:hover, .sapUiTableColHdr .sapUiTableCol .sapUiTableColCell .sapMLabel:hover {
+    cursor: pointer;
+}
+
+.sap-tablet {
+    .sapB1UiBody;
+
+{
+    .sapMITBHead;
+
+{
+    display: block;
+}
+
+.sapMITBScrollContainer {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+}
+}
+
+.sapB1MInputBase {
+    .sapMInputBaseInner
+    ~ .indicator;
+
+{
+    left: 0;
+}
+
+.indicator ~ .sapMInputBaseInner {
+    padding-left: 2rem;
+    background: #f00;
+}
+
+}
+
+
+.sapUiTableRSel .sapUiTableTr > td.sapUiTableTdFirst > .sapUiTableCell {
+    padding: 0;
+}
+
+.sapUiTableRSel .sapUiTableTr > td.sapUiTableTdFirst {
+    padding: 0;
+}
+}

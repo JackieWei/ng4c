@@ -1,5 +1,5 @@
 C:\ng\ng4c\src\core\bin\core.dll
 C:\ng\ng4c\src\core\bin\core.pdb
+C:\ng\ng4c\src\core\obj\Debug\core.csprojResolveAssemblyReference.cache
 C:\ng\ng4c\src\core\obj\Debug\core.dll
 C:\ng\ng4c\src\core\obj\Debug\core.pdb
-C:\ng\ng4c\src\core\obj\Debug\core.csprojResolveAssemblyReference.cache

@@ -1,0 +1,34 @@
+﻿/// <reference path="../../app/router.ts" />
+/// <reference path="../../basecontroller.ts" />
+module sap.sbo.ng4c.launchpad.list {
+
+    import BaseController = sap.sbo.ng4c.BaseController;
+    import Router = sap.sbo.ng4c.app.Router;
+
+    export interface ListScope extends Scope {
+        backToDashboard: Function;
+    }
+
+    export class List extends BaseController {
+
+        private scope: ListScope;
+        private router: Router;
+
+        public constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes, router: Router) {
+            super($scope, $element, $attrs, "sap.sbo.ng4c.launchpad.list.List");
+
+            this.scope = <ListScope>$scope;
+            this.router = router;
+
+            this.scope.backToDashboard = $.proxy(this.backToDashboard, this);
+        }
+
+        private backToDashboard() {
+            this.router.hashToDashboard();
+        }
+
+        private naviToDetail() {
+            this.router.hashToDetail();
+        }
+    }
+} 

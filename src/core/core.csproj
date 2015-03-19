@@ -57,9 +57,24 @@
     <Content Include="resources\sap\sbo\ng4c\launchpad\aside\Modules.html" />
     <Content Include="resources\sap\sbo\ng4c\launchpad\dashboard\Dashboard.html" />
     <Content Include="resources\sap\sbo\ng4c\launchpad\dashboard\tiles\KPI.html" />
+    <Content Include="resources\sap\sbo\ng4c\launchpad\detail\Detail.html" />
+    <Content Include="resources\sap\sbo\ng4c\launchpad\detail\ORDR.html" />
+    <Content Include="resources\sap\sbo\ng4c\launchpad\detail\ORDR.xml" />
+    <Content Include="resources\sap\sbo\ng4c\launchpad\list\List.html" />
+    <Content Include="resources\sap\sbo\ui\controls\Button.html" />
+    <Content Include="resources\sap\sbo\ui\controls\DatePicker.html" />
+    <Content Include="resources\sap\sbo\ui\controls\DecimalInput.html" />
+    <Content Include="resources\sap\sbo\ui\controls\Input.html" />
+    <Content Include="resources\sap\sbo\ui\controls\Label.html" />
+    <Content Include="resources\sap\sbo\ui\controls\LinkedInput.html" />
+    <Content Include="resources\sap\sbo\ui\controls\NumberInput.html" />
+    <Content Include="resources\sap\sbo\ui\controls\Select.html" />
+    <Content Include="resources\sap\sbo\ui\controls\TextArea.html" />
     <Content Include="resources\sap\sbo\ui\controls\TreeNode.html" />
     <Content Include="resources\themes\dracula\images\app\logo.png" />
     <Content Include="resources\themes\dracula\images\app\sap_50x26.png" />
+    <Content Include="resources\themes\dracula\images\app\trendInfoDown.png" />
+    <Content Include="resources\themes\dracula\images\app\trendInfoUp.png" />
     <Content Include="resources\themes\dracula\library.less" />
     <Content Include="resources\themes\base\fonts\SAP-icons.ttf" />
     <Content Include="resources\themes\base\fonts\SAP-icons.eot" />
@@ -72,8 +87,18 @@
     <Content Include="resources\themes\dracula\sap\sbo\ng4c\footer\Footer.less" />
     <Content Include="resources\themes\dracula\sap\sbo\ng4c\header\Header.less" />
     <Content Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\dashboard\Dashboard.less" />
+    <None Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\dashboard\Tile.less" />
     <Content Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\Launchpad.less" />
     <Content Include="resources\themes\base\library.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\ui\controls\Button.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\ui\controls\DatePicker.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\ui\controls\DecimalInput.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\ui\controls\Input.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\ui\controls\TextArea.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\ui\controls\Select.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\ui\controls\NumberInput.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\ui\controls\LinkedInput.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\ui\controls\Label.less" />
     <TypeScriptCompile Include="..\thirdparty\resources\thirdparty.d\tsd.d.ts">
       <Link>resources\tsd.d.ts</Link>
     </TypeScriptCompile>
@@ -105,6 +130,8 @@
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\aside\Modules.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\dashboard\Dashboard.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\dashboard\tiles\Kpi.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\detail\Detail.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\list\List.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\Scope.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\aside\Menu.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ng4c\launchpad\aside\MyMenu.ts" />
@@ -117,9 +144,17 @@
     <Content Include="resources\sap\sbo\ui\controls\MyMenu.json" />
     <Content Include="resources\sap\sbo\ng4c\launchpad\dashboard\Pages.json" />
     <None Include="resources\sap\sbo\ui\controls\Modules.json" />
+    <TypeScriptCompile Include="resources\sap\sbo\ui\controls\Button.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ui\controls\DatePicker.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ui\controls\DecimalInput.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ui\controls\Input.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ui\controls\Label.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ui\controls\LinkedInput.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ui\controls\NumberInput.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ui\controls\Select.ts" />
+    <TypeScriptCompile Include="resources\sap\sbo\ui\controls\TextArea.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ui\controls\Tree.ts" />
     <Content Include="resources\sap\sbo\ui\controls\Tree.html" />
-    <TypeScriptCompile Include="resources\sap\sbo\ui\controls\TreeDirective.ts" />
     <TypeScriptCompile Include="resources\sap\sbo\ui\controls\TreeNode.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +195,8 @@
     <Content Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\dashboard\tiles\Kpi.less" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\detail\Detail.less" />
+    <None Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\list\List.less" />
     <Content Include="resources\themes\dracula\sap\sbo\ui\controls\TreeNode.less" />
   </ItemGroup>
   <ItemGroup>

@@ -76,6 +76,9 @@ declare module sap.sbo.ng4c.app {
     }
 }
 declare module sap.sbo.ng4c {
+    interface CssProps {
+        name: string;
+    }
     interface Scope extends ng.IScope {
         template: string;
         className: string;
@@ -83,6 +86,7 @@ declare module sap.sbo.ng4c {
         height: number;
         left: number;
         top: number;
+        css: CssProps;
         data: any;
     }
 }
@@ -203,22 +207,78 @@ declare module sap.sbo.ng4c.launchpad.aside {
         constructor($scope: LightAccessProps, $element: JQuery, $attrs: ng.IAttributes);
     }
 }
+declare module sap.sbo.ui {
+    import BaseController = sap.sbo.ng4c.BaseController;
+    import Scope = sap.sbo.ng4c.Scope;
+    interface DirectiveConfig {
+        restrict?: string;
+        priority?: number;
+        replace?: boolean;
+        scope?: boolean;
+        transclude?: boolean;
+        templateUrl: string;
+        compile?: Function;
+        link?: Function;
+    }
+    interface ControlScope extends Scope {
+        value: string;
+    }
+    interface ControlAttributes extends ng.IAttributes {
+        ngValue: string;
+    }
+    class BaseControl extends BaseController {
+        private static DIRECTIVE;
+        static makeDirective(directive: DirectiveConfig): any;
+        constructor($scope: ControlScope, $element: JQuery, $attrs: ng.IAttributes, $package: string);
+    }
+}
+declare module sap.sbo.ui.controls {
+    import BaseControl = sap.sbo.ui.BaseControl;
+    interface NodeData {
+        id: string;
+        name: string;
+        create: boolean;
+        showListview: boolean;
+        action: string;
+        level: number;
+        logo: string;
+        show: string;
+        nodes: NodeData[];
+    }
+    interface TreeNodeScope extends ControlScope {
+        name: string;
+        isFolder: boolean;
+        expand: boolean;
+        nodes: NodeData[];
+        logoClickHandler: Function;
+    }
+    class TreeNode extends BaseControl {
+        private scope;
+        private parent;
+        constructor($scope: TreeNodeScope, $element: JQuery, $attrs: ng.IAttributes);
+        buildScope(): void;
+        logoClickHandler(e: any): void;
+    }
+}
 declare module sap.sbo.ng4c.app {
     class Router {
+        private static HASH;
         private static SLASH;
         private static EMPTY;
         private static DOT;
         private static LIST;
         private static DETAIL;
         constructor();
-        hashTo(fragments: string[]): void;
+        private hashTo(fragments);
         hashToList(boAbbr: string): void;
         hashToDetail(boAbbr: string, boIdx: string): void;
+        hashToDashboard(): void;
     }
 }
 declare module sap.sbo.ng4c.launchpad.aside {
     import BaseController = sap.sbo.ng4c.BaseController;
     import Router = sap.sbo.ng4c.app.Router;
+    import NodeData = sap.sbo.ui.controls.NodeData;
     interface ModulesProps extends Scope {
         menuItemClick: Function;
     }
@@ -226,7 +286,7 @@ declare module sap.sbo.ng4c.launchpad.aside {
         private scope;
         private router;
         constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes, router: Router);
-        menuItemClick(menuData: any): void;
+        menuItemClick(menuData: NodeData): void;
     }
 }
 declare module sap.sbo.ng4c.launchpad.aside {
@@ -285,25 +345,8 @@ declare module sap.sbo.ng4c.launchpad.aside {
     }
 }
 declare module sap.sbo.ui.controls {
-    function TreeDirective(): {
-        restrict: string;
-        replace: boolean;
-        transclude: boolean;
-        templateUrl: string;
-        link: ($scope: any, $element: any, $attrs: any, $controller: any) => void;
-    };
-}
-declare module sap.sbo.ui {
-    import BaseController = sap.sbo.ng4c.BaseController;
-    import Scope = sap.sbo.ng4c.Scope;
-    interface ControlScope extends Scope {
-    }
-    class BaseControl extends BaseController {
-        constructor($scope: ControlScope, $element: JQuery, $attrs: ng.IAttributes, $package: string);
-    }
-}
-declare module sap.sbo.ui.controls {
     import BaseControl = sap.sbo.ui.BaseControl;
+    function TreeDirective(): any;
     interface TreeScope extends ControlScope {
         nodes: any[];
     }
@@ -344,23 +387,6 @@ declare module sap.sbo.ng4c.launchpad.dashboard {
         private onTilesLoaded(data);
     }
 }
-declare module sap.sbo.ui.controls {
-    import BaseControl = sap.sbo.ui.BaseControl;
-    interface TreeNodeScope extends ControlScope {
-        name: string;
-        isFolder: boolean;
-        expand: boolean;
-        nodes: any[];
-        logoClickHandler: Function;
-    }
-    class TreeNode extends BaseControl {
-        private scope;
-        private parent;
-        constructor($scope: TreeNodeScope, $element: JQuery, $attrs: ng.IAttributes);
-        buildScope(): void;
-        logoClickHandler(e: any): void;
-    }
-}
 declare module sap.sbo.ng4c.app {
     class BodyCtrl {
         constructor($scope: ng.IScope);
@@ -370,6 +396,22 @@ declare module sap.sbo.ng4c.app {
     class Backend {
     }
 }
+declare module sap.sbo.ng4c.launchpad.list {
+    import BaseController = sap.sbo.ng4c.BaseController;
+    import Router = sap.sbo.ng4c.app.Router;
+    interface ListScope extends Scope {
+        action: string;
+        backToDashboard: Function;
+        naviToDetail: Function;
+    }
+    class List extends BaseController {
+        private scope;
+        private router;
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes, router: Router);
+        private backToDashboard();
+        private naviToDetail();
+    }
+}
 declare module sap.sbo.ng4c.launchpad.aside {
     import BaseController = sap.sbo.ng4c.BaseController;
     interface MyMenuProps extends Scope {
@@ -377,6 +419,153 @@ declare module sap.sbo.ng4c.launchpad.aside {
     class MyMenu extends BaseController {
         private scope;
         constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
+    }
+}
+declare module sap.sbo.ng4c.launchpad.detail {
+    import BaseController = sap.sbo.ng4c.BaseController;
+    interface DetailScope extends Scope {
+    }
+    class Detail extends BaseController {
+        private scope;
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
+    }
+}
+declare module sap.sbo.ui.controls {
+    import BaseControl = sap.sbo.ui.BaseControl;
+    function ButtonDirective(): Object;
+    interface ButtonScope extends ControlScope {
+        text: string;
+        icon: string;
+        style: string;
+        tabindex: string;
+    }
+    interface ButtonAttributes extends ng.IAttributes {
+        text: string;
+        icon: string;
+        type: string;
+        press: Function;
+        tabindex: boolean;
+    }
+    class Button extends BaseControl {
+        private scope;
+        private attrs;
+        constructor($scope: ControlScope, $element: JQuery, $attrs: ng.IAttributes);
+        private buildScope();
+        private getIconContent(icon);
+    }
+}
+declare module sap.sbo.ui.controls {
+    import BaseControl = sap.sbo.ui.BaseControl;
+    function DatePickerDirective(): Object;
+    interface DatePickerScope extends ControlScope {
+    }
+    interface DatePickerAttributes extends ControlAttributes {
+    }
+    class DatePicker extends BaseControl {
+        private scope;
+        private attrs;
+        constructor($scope: ControlScope, $element: JQuery, $attrs: ControlAttributes);
+        protected buildScope(): void;
+    }
+}
+declare module sap.sbo.ui.controls {
+    import BaseControl = sap.sbo.ui.BaseControl;
+    function DecimalInputDirective(): Object;
+    interface DecimalInputScope extends ControlScope {
+    }
+    interface DecimalInputAttributes extends ControlAttributes {
+    }
+    class DecimalInput extends BaseControl {
+        private scope;
+        private attrs;
+        constructor($scope: ControlScope, $element: JQuery, $attrs: ControlAttributes);
+        private buildScope();
+    }
+}
+declare module sap.sbo.ui.controls {
+    import BaseControl = sap.sbo.ui.BaseControl;
+    function InputDirective(): Object;
+    interface InputScope extends ControlScope {
+    }
+    interface InputAttributes extends ControlAttributes {
+    }
+    class Input extends BaseControl {
+        private scope;
+        private attrs;
+        constructor($scope: ControlScope, $element: JQuery, $attrs: ControlAttributes);
+        private buildScope();
+    }
+}
+declare module sap.sbo.ui.controls {
+    import BaseControl = sap.sbo.ui.BaseControl;
+    function LabelDirective(): Object;
+    interface LabelScope extends ControlScope {
+        text: string;
+    }
+    interface LabelAttributes extends ControlAttributes {
+        ngText: string;
+    }
+    class Label extends BaseControl {
+        private scope;
+        private attrs;
+        constructor($scope: LabelScope, $element: JQuery, $attrs: ng.IAttributes);
+        buildScope(): void;
+    }
+}
+declare module sap.sbo.ui.controls {
+    import BaseControl = sap.sbo.ui.BaseControl;
+    function LinkedInputDirective(): Object;
+    interface LinkedInputScope extends ControlScope {
+    }
+    interface LinkedInputAttributes extends ControlAttributes {
+    }
+    class LinkedInput extends BaseControl {
+        private scope;
+        private attrs;
+        constructor($scope: ControlScope, $element: JQuery, $attrs: ControlAttributes);
+        private buildScope();
+    }
+}
+declare module sap.sbo.ui.controls {
+    import BaseControl = sap.sbo.ui.BaseControl;
+    function NumberInputDirective(): Object;
+    interface NumberInputScope extends ControlScope {
+    }
+    interface NumberInputAttributes extends ControlAttributes {
+    }
+    class NumberInput extends BaseControl {
+        private scope;
+        private attrs;
+        constructor($scope: ControlScope, $element: JQuery, $attrs: ControlAttributes);
+        private buildScope();
+    }
+}
+declare module sap.sbo.ui.controls {
+    import BaseControl = sap.sbo.ui.BaseControl;
+    function SelectDirective(): Object;
+    interface SelectScope extends ControlScope {
+    }
+    interface SelectAttributes extends ControlAttributes {
+    }
+    class Select extends BaseControl {
+        private scope;
+        private attrs;
+        constructor($scope: ControlScope, $element: JQuery, $attrs: ControlAttributes);
+        private buildScope();
+    }
+}
+declare module sap.sbo.ui.controls {
+    import BaseControl = sap.sbo.ui.BaseControl;
+    function TextAreaDirective(): Object;
+    interface TextAreaScope extends ControlScope {
+    }
+    interface TextAreaAttributes extends ControlAttributes {
+    }
+    class TextArea extends BaseControl {
+        private scope;
+        private attrs;
+        constructor($scope: ControlScope, $element: JQuery, $attrs: ControlAttributes);
+        private buildScope();
     }
 }
 declare module sap.sbo.ng4c.app {
