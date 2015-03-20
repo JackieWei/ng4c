@@ -87,6 +87,9 @@
     <Content Include="resources\themes\dracula\sap\sbo\ng4c\footer\Footer.less" />
     <Content Include="resources\themes\dracula\sap\sbo\ng4c\header\Header.less" />
     <Content Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\dashboard\Dashboard.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\colors.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\fonts.less" />
+    <Content Include="resources\themes\dracula\sap\sbo\config.less" />
     <None Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\dashboard\Tile.less" />
     <Content Include="resources\themes\dracula\sap\sbo\ng4c\launchpad\Launchpad.less" />
     <Content Include="resources\themes\base\library.less" />

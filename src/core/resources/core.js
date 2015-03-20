@@ -2,6 +2,45 @@ var sap;
 (function (sap) {
     var cloud;
     (function (cloud) {
+        var core;
+        (function (core) {
+            var util;
+            (function (util) {
+                var NamingUtil = (function () {
+                    function NamingUtil() {
+                    }
+                    NamingUtil.toCssName = function (packageName) {
+                        return packageName.replace(NamingUtil.DOT_REG, NamingUtil.HYPHEN);
+                    };
+                    NamingUtil.toPath = function (packageName) {
+                        return packageName.replace(NamingUtil.DOT_REG, NamingUtil.SLASH);
+                    };
+                    NamingUtil.toDirective = function (packageName) {
+                        var names = packageName.split(NamingUtil.DOT);
+                        for (var i = 1, total = names.length; i < total; i++) {
+                            names[i] = NamingUtil.uppercaseFirstChar(names[i]);
+                        }
+                        return names.join(NamingUtil.EMPTY);
+                    };
+                    NamingUtil.uppercaseFirstChar = function (str) {
+                        return str.charAt(0).toUpperCase() + str.slice(1);
+                    };
+                    NamingUtil.DOT_REG = /\./gi;
+                    NamingUtil.SLASH = '/';
+                    NamingUtil.DOT = '.';
+                    NamingUtil.HYPHEN = '-';
+                    NamingUtil.EMPTY = '';
+                    return NamingUtil;
+                })();
+                util.NamingUtil = NamingUtil;
+            })(util = core.util || (core.util = {}));
+        })(core = cloud.core || (cloud.core = {}));
+    })(cloud = sap.cloud || (sap.cloud = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var cloud;
+    (function (cloud) {
         var logging;
         (function (logging) {
             var SimpleLogger = (function () {
@@ -63,66 +102,6 @@ var sap;
 })(sap || (sap = {}));
 var sap;
 (function (sap) {
-    var cloud;
-    (function (cloud) {
-        var core;
-        (function (core) {
-            var util;
-            (function (util) {
-                var NamingUtil = (function () {
-                    function NamingUtil() {
-                    }
-                    NamingUtil.toCssName = function (packageName) {
-                        return packageName.replace(NamingUtil.DOT_REG, NamingUtil.HYPHEN);
-                    };
-                    NamingUtil.toPath = function (packageName) {
-                        return packageName.replace(NamingUtil.DOT_REG, NamingUtil.SLASH);
-                    };
-                    NamingUtil.toDirective = function (packageName) {
-                        var names = packageName.split(NamingUtil.DOT);
-                        for (var i = 1, total = names.length; i < total; i++) {
-                            names[i] = NamingUtil.uppercaseFirstChar(names[i]);
-                        }
-                        return names.join(NamingUtil.EMPTY);
-                    };
-                    NamingUtil.uppercaseFirstChar = function (str) {
-                        return str.charAt(0).toUpperCase() + str.slice(1);
-                    };
-                    NamingUtil.DOT_REG = /\./gi;
-                    NamingUtil.SLASH = '/';
-                    NamingUtil.DOT = '.';
-                    NamingUtil.HYPHEN = '-';
-                    NamingUtil.EMPTY = '';
-                    return NamingUtil;
-                })();
-                util.NamingUtil = NamingUtil;
-            })(util = core.util || (core.util = {}));
-        })(core = cloud.core || (cloud.core = {}));
-    })(cloud = sap.cloud || (sap.cloud = {}));
-})(sap || (sap = {}));
-var sap;
-(function (sap) {
-    var sbo;
-    (function (sbo) {
-        var ng4c;
-        (function (ng4c) {
-            var app;
-            (function (app) {
-                var AppCtrl = (function () {
-                    function AppCtrl($scope) {
-                        $scope.$on("showOrHideMenu", function (event, showOrHide) {
-                            $scope.$broadcast("showOrHideMenuBroadcast", showOrHide);
-                        });
-                    }
-                    return AppCtrl;
-                })();
-                app.AppCtrl = AppCtrl;
-            })(app = ng4c.app || (ng4c.app = {}));
-        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
-    })(sbo = sap.sbo || (sap.sbo = {}));
-})(sap || (sap = {}));
-var sap;
-(function (sap) {
     var sbo;
     (function (sbo) {
         var ng4c;
@@ -162,6 +141,27 @@ var sap;
                     return Config;
                 })();
                 app.Config = Config;
+            })(app = ng4c.app || (ng4c.app = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var app;
+            (function (app) {
+                var AppCtrl = (function () {
+                    function AppCtrl($scope) {
+                        $scope.$on("showOrHideMenu", function (event, showOrHide) {
+                            $scope.$broadcast("showOrHideMenuBroadcast", showOrHide);
+                        });
+                    }
+                    return AppCtrl;
+                })();
+                app.AppCtrl = AppCtrl;
             })(app = ng4c.app || (ng4c.app = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
@@ -1083,17 +1083,7 @@ var sap;
                         this.buildScope();
                     }
                     Button.prototype.buildScope = function () {
-                        this.scope.tabindex = this.attrs.tabindex ? '-1' : '';
-                        if (this.attrs.icon) {
-                            this.scope.text = this.attrs.icon;
-                            this.scope.style = "font-family: 'SAP- icons'";
-                            this.scope.icon = '';
-                        }
-                        else {
-                            this.scope.text = '';
-                            this.scope.style = '';
-                            this.scope.icon = 'data-ui-icon="' + this.getIconContent(this.attrs.icon) + '"';
-                        }
+                        this.scope.icon = this.getIconContent(this.attrs.icon);
                     };
                     Button.prototype.getIconContent = function (icon) {
                         return '';

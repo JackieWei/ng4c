@@ -1,4 +1,17 @@
 /// <reference path="../../thirdparty/resources/thirdparty.d/tsd.d.ts" />
+declare module sap.cloud.core.util {
+    class NamingUtil {
+        private static DOT_REG;
+        private static SLASH;
+        private static DOT;
+        private static HYPHEN;
+        private static EMPTY;
+        static toCssName(packageName: string): string;
+        static toPath(packageName: string): string;
+        static toDirective(packageName: string): string;
+        static uppercaseFirstChar(str: string): string;
+    }
+}
 declare module sap.cloud.logging {
     interface Logger {
         info(msg: string): void;
@@ -24,24 +37,6 @@ declare module sap.cloud.core {
         process<T>(num: T): T;
     }
 }
-declare module sap.cloud.core.util {
-    class NamingUtil {
-        private static DOT_REG;
-        private static SLASH;
-        private static DOT;
-        private static HYPHEN;
-        private static EMPTY;
-        static toCssName(packageName: string): string;
-        static toPath(packageName: string): string;
-        static toDirective(packageName: string): string;
-        static uppercaseFirstChar(str: string): string;
-    }
-}
-declare module sap.sbo.ng4c.app {
-    class AppCtrl {
-        constructor($scope: EventRouteScope);
-    }
-}
 declare module sap.sbo.ng4c.app.config {
     class UIConfig {
         menuFullWidth: number;
@@ -55,6 +50,11 @@ declare module sap.sbo.ng4c.app {
     class Config {
         ui: UIConfig;
         constructor();
+    }
+}
+declare module sap.sbo.ng4c.app {
+    class AppCtrl {
+        constructor($scope: EventRouteScope);
     }
 }
 declare module sap.sbo.ng4c.app {
@@ -440,11 +440,7 @@ declare module sap.sbo.ui.controls {
         tabindex: string;
     }
     interface ButtonAttributes extends ng.IAttributes {
-        text: string;
         icon: string;
-        type: string;
-        press: Function;
-        tabindex: boolean;
     }
     class Button extends BaseControl {
         private scope;
